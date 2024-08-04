@@ -1,5 +1,6 @@
 import { createTheme, useTheme as useRestyleTheme } from '@shopify/restyle';
 import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
+import { normalizeY } from 'utils/normalize';
 
 type NamedStyles<T> = {
   [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
@@ -12,6 +13,8 @@ const palette = {
   white: '#FFFFFF',
   black: '#000000',
   purple: '#6366F1',
+  primary: '#ff660e',
+  grayBG: '#f5f5f5',
 };
 
 const theme = createTheme({
@@ -25,6 +28,7 @@ const theme = createTheme({
     m_16: 16,
     ml_24: 24,
     l_32: 32,
+    xl_47: 47,
     xl_64: 64,
   },
   borderRadii: {
@@ -32,6 +36,7 @@ const theme = createTheme({
     m_6: 6,
     l_12: 12,
     xl_24: 24,
+    xl_30: 30,
   },
   textVariants: {
     body: {
@@ -45,6 +50,13 @@ const theme = createTheme({
       fontSize: 64,
       fontWeight: 'bold',
     },
+    // fontSize: {
+    //   s: normalizeY(12),
+    //   n: normalizeY(14),
+    //   m: normalizeY(16),
+    //   l: normalizeY(18),
+    //   xl: normalizeY(20),
+    // },
     defaults: {
       // We can define a default text variant here.
     },
