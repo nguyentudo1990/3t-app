@@ -1,10 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
-import {normalizeY} from '../utils/normalize';
-import {Colors} from '../utils/Colors';
-import fonts from '../assets/fonts';
+import { StyleSheet, Text } from 'react-native';
+import { normalizeY } from '../utils/normalize';
+import colors from 'config/colors';
 
-const Typo = ({size, alignCenter, style, ...props}) => {
+const Typo = ({ size, alignCenter, style, ...props }) => {
   return (
     <Text
       allowFontScaling={false}
@@ -23,8 +22,7 @@ const Typo = ({size, alignCenter, style, ...props}) => {
 
 const styles = StyleSheet.create({
   default: {
-    color: Colors.pureBlack,
-    fontFamily: fonts.regular,
+    color: colors.black,
   },
 });
 

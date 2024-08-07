@@ -1,3 +1,4 @@
+import { height } from 'config/spacing';
 import React from 'react';
 import { Box, Text } from 'theme';
 import { normalizeY } from 'utils/normalize';
@@ -5,7 +6,7 @@ import { normalizeY } from 'utils/normalize';
 function AppButton({ label }) {
   return (
     <Box
-      height={normalizeY(50)}
+      height={height.btn}
       backgroundColor="primary"
       width={'100%'}
       marginTop="m_16"
