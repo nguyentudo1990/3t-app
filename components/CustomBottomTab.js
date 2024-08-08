@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, Keyboard } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Keyboard, Image } from 'react-native';
 import { FontAwesome5, Ionicons, AntDesign, Feather } from '@expo/vector-icons'; // Import necessary icon sets
 import { normalizeX, normalizeY } from '../utils/normalize';
 import colors from 'config/colors';
@@ -34,6 +34,16 @@ const CustomBottomTab = ({ state, navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require('../assets/navbar.png')}
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          resizeMode: 'stretch',
+          left: 0,
+        }}
+      />
       {tabs.map((tab, index) => {
         const isFocused = state.index === index;
         const routeName = state.routes[index].name;
@@ -43,11 +53,26 @@ const CustomBottomTab = ({ state, navigation }) => {
             key={index}
             style={styles.tabContent}
             onPress={() => navigation.navigate(routeName)}>
-            <IconComponent
-              name={tab.iconName}
-              size={24}
-              color={isFocused ? colors.primary : colors.gray}
-            />
+            {tab.name == 'Home' ? (
+              <View
+                style={{
+                  backgroundColor: colors.primary,
+                  height: normalizeX(60),
+                  width: normalizeX(60),
+                  borderRadius: normalizeX(30),
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: 85,
+                }}>
+                <IconComponent name={tab.iconName} size={24} color={colors.white} />
+              </View>
+            ) : (
+              <IconComponent
+                name={tab.iconName}
+                size={24}
+                color={isFocused ? colors.primary : colors.gray}
+              />
+            )}
           </TouchableOpacity>
         );
       })}
@@ -62,15 +87,15 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.white,
     bottom: 0,
-    paddingBottom: normalizeY(20),
-    paddingTop: normalizeY(10),
+    height: 70,
+    // paddingBottom: normalizeY(20),
+    // paddingTop: normalizeY(10),
     position: 'absolute',
     justifyContent: 'space-evenly',
-    shadowColor: colors.black,
+    // shadowColor: colors.black,
     shadowOffset: { height: 0, width: 0 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     elevation: 10,
   },
   tabContent: {

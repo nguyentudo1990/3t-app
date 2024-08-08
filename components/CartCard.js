@@ -4,23 +4,23 @@ import colors from 'config/colors';
 import { View, Image, Dimensions, StyleSheet } from 'react-native';
 import Typo from './Typo';
 import { normalizeX, normalizeY } from 'utils/normalize';
+import { spacingY } from 'config/spacing';
 const { width } = Dimensions.get('screen');
 
 function CartCard({ item }) {
   const imgSize = width * 0.3 - normalizeY(30);
   return (
     <View style={styles.container}>
-      <Image
-        source={{ uri: item.url }}
-        resizeMode="contain"
-        style={[
-          styles.img,
-          {
+      <View style={styles.imgContainer}>
+        <Image
+          source={item.url}
+          resizeMode="contain"
+          style={{
             width: imgSize,
             height: imgSize,
-          },
-        ]}
-      />
+          }}
+        />
+      </View>
       <View style={{ flex: 1, justifyContent: 'space-between' }}>
         <View style={styles.row}>
           <Typo size={17} style={{ fontWeight: 'bold' }}>
@@ -58,8 +58,9 @@ const styles = StyleSheet.create({
     borderRadius: normalizeY(12),
     gap: normalizeX(10),
   },
-  img: {
-    backgroundColor: colors.white,
+  imgContainer: {
+    padding: spacingY._10,
+    backgroundColor: colors.lighterGray,
     borderRadius: normalizeY(15),
   },
   row: {

@@ -30,8 +30,13 @@ function CartScreen(props) {
           return <CartCard item={item} />;
         }}
       />
-      {/* <TabCircle /> */}
-      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{
+          backgroundColor: colors.white,
+          borderTopRightRadius: radius._20,
+          borderTopLeftRadius: radius._20,
+        }}>
         <View style={styles.checkoutContainer}>
           <View style={styles.discountRow}>
             <TextInput style={styles.input} placeholder="Enter Discount Code" />
@@ -43,6 +48,7 @@ function CartScreen(props) {
           <AppButton label={'Checkout'} />
         </View>
       </KeyboardAvoidingView>
+      <View style={{ height: '12%', backgroundColor: colors.white }} />
     </ScreenComponent>
   );
 }
@@ -65,7 +71,7 @@ const Row = ({ title, price }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'grayBG',
-    paddingBottom: spacingY._60,
+    paddingBottom: spacingY._20,
   },
   headerTitle: {
     fontWeight: 'bold',
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
   input: {
     fontSize: normalizeY(16),
     flex: 1,
-    paddingRight: normalizeX(10),
+    paddingRight: spacingX._10,
   },
   applyText: {
     fontSize: normalizeY(18),
@@ -105,8 +111,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     backgroundColor: colors.white,
     paddingTop: spacingY._20,
-    paddingBottom: spacingY._20,
     paddingHorizontal: spacingX._20,
+    paddingBottom: spacingY._10,
   },
   row: {
     height: height.btn,

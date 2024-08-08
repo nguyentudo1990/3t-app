@@ -7,6 +7,7 @@ const spacingX = {
   _10: normalizeX(10),
   _15: normalizeX(15),
   _20: normalizeX(20),
+  _30: normalizeX(30),
 };
 
 const spacingY = {
@@ -15,12 +16,12 @@ const spacingY = {
   _10: normalizeY(10),
   _15: normalizeY(15),
   _20: normalizeY(20),
+  _40: normalizeY(40),
   _60: normalizeY(60),
 };
 
 const height = {
   btn: normalizeY(50),
-
   input: normalizeY(45),
 };
 
