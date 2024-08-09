@@ -11,4 +11,7 @@ export default {
   red: '#FF0000',
   lightGray: '#c2c2c2',
   lighterGray: '#e7e7e6',
+  maroon: '#952033',
+  navy: '#1f4297',
+  brown: '#8c491d',
 };

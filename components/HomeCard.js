@@ -2,14 +2,18 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import colors from 'config/colors';
 import { radius, spacingX, spacingY } from 'config/spacing';
 import React from 'react';
-import { Dimensions, Image, View, StyleSheet } from 'react-native';
+import { Dimensions, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Typo from './Typo';
 import { normalizeY } from 'utils/normalize';
+import { useNavigation } from '@react-navigation/native';
 const { width, height } = Dimensions.get('screen');
 
 function HomeCard({ item }) {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('ItemDetails', item)}>
       <View style={styles.heartBg}>
         <FontAwesome5 name={'heart'} size={16} color={'white'} />
       </View>
@@ -27,7 +31,7 @@ function HomeCard({ item }) {
         <View style={[styles.dot, { backgroundColor: colors.gray }]} />
         <View style={[styles.dot, { backgroundColor: colors.red }]} />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

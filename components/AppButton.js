@@ -1,23 +1,27 @@
-import { height } from 'config/spacing';
 import React from 'react';
-import { Box, Text } from 'theme';
-import { normalizeY } from 'utils/normalize';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import colors from 'config/colors';
+import { height, radius, spacingY } from 'config/spacing';
+import Typo from './Typo';
 
-function AppButton({ label }) {
+function AppButton({ label, style }) {
   return (
-    <Box
-      height={height.btn}
-      backgroundColor="primary"
-      width={'100%'}
-      marginTop="m_16"
-      borderRadius="xl_30"
-      justifyContent="center"
-      alignItems="center">
-      <Text color="white" fontSize={normalizeY(18)}>
+    <TouchableOpacity style={[styles.button, { ...style }]}>
+      <Typo style={{ color: colors.white }} size={18}>
         {label}
-      </Text>
-    </Box>
+      </Typo>
+    </TouchableOpacity>
   );
 }
-
+const styles = StyleSheet.create({
+  button: {
+    height: height.btn,
+    backgroundColor: colors.primary,
+    width: '100%',
+    marginTop: spacingY._15,
+    borderRadius: radius._30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 export default AppButton;
