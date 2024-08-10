@@ -7,6 +7,7 @@ const spacingX = {
   _10: normalizeX(10),
   _15: normalizeX(15),
   _20: normalizeX(20),
+  _25: normalizeX(25),
   _30: normalizeX(30),
 };
 
