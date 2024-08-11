@@ -8,15 +8,18 @@ import AppNavigator from 'navigation/AppNavigator';
 import { StatusBar } from 'react-native';
 import { useState } from 'react';
 import AuthNavigator from 'navigation/AuthNavigator';
+import AuthContext from 'auth/AuthContext';
 
 export default function App() {
   const [user, setUser] = useState(null);
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar barStyle={'dark-content'} />
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <NavigationContainer>{user ? <AppNavigator /> : <AuthNavigator />}</NavigationContainer>
-      </GestureHandlerRootView>
-    </ThemeProvider>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <ThemeProvider theme={theme}>
+        <StatusBar barStyle={'dark-content'} />
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <NavigationContainer>{user ? <AppNavigator /> : <AuthNavigator />}</NavigationContainer>
+        </GestureHandlerRootView>
+      </ThemeProvider>
+    </AuthContext.Provider>
   );
 }

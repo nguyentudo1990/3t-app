@@ -4,11 +4,13 @@ import Typo from './Typo';
 import colors from 'config/colors';
 import { radius, spacingX, spacingY } from 'config/spacing';
 import { BlurView } from 'expo-blur';
+import { useNavigation } from '@react-navigation/native';
 const { width } = Dimensions.get('screen');
 const containerWidth = width - 30;
 
 function StartSelector({ selected, setSelected }) {
   const animatedValue = new Animated.Value(0);
+  const navigation = useNavigation();
   const [startRange, setStartRange] = useState(0);
   const [endRange, setEndRange] = useState(0);
 
@@ -17,6 +19,10 @@ function StartSelector({ selected, setSelected }) {
     setStartRange(endRange);
     setEndRange(range);
     setSelected(text);
+    const screen = text == 'Register' ? 'Register' : 'Signin';
+    setTimeout(() => {
+      navigation.navigate(screen);
+    }, 200);
   };
 
   useEffect(() => {

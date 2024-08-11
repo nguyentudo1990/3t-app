@@ -29,6 +29,7 @@ const height = {
 const radius = {
   _3: normalizeY(3),
   _6: normalizeY(6),
+  _10: normalizeY(10),
   _12: normalizeY(12),
   _15: normalizeY(15),
   _20: normalizeY(20),

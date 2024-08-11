@@ -4,9 +4,9 @@ import colors from 'config/colors';
 import { height, radius, spacingY } from 'config/spacing';
 import Typo from './Typo';
 
-function AppButton({ label, style }) {
+function AppButton({ label, style, onPress }) {
   return (
-    <TouchableOpacity style={[styles.button, { ...style }]}>
+    <TouchableOpacity style={[styles.button, { ...style }]} onPress={onPress}>
       <Typo style={{ color: colors.white }} size={18}>
         {label}
       </Typo>
