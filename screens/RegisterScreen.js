@@ -84,7 +84,11 @@ function RegisterScreen(props) {
         <AppButton
           onPress={() => Auth.setUser('123')}
           label={'Register'}
-          style={{ backgroundColor: '#fc6b68', borderRadius: radius._12, marginTop: spacingY._40 }}
+          style={{
+            backgroundColor: colors.primary,
+            borderRadius: radius._12,
+            marginTop: spacingY._40,
+          }}
         />
         <View style={styles.orContinueRow}>
           <View style={styles.line} />
@@ -100,7 +104,7 @@ function RegisterScreen(props) {
           style={[styles.orContinueRow, { gap: spacingX._5, marginTop: '15%' }]}
           onPress={() => navigation.navigate('Signin')}>
           <Typo>Already a memeber?</Typo>
-          <Typo style={{ color: '#327ad6' }}>Signin</Typo>
+          <Typo style={{ color: colors.blue }}>Signin</Typo>
         </TouchableOpacity>
       </BlurView>
     </SafeAreaView>
@@ -138,7 +142,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: radius._15,
     marginTop: spacingY._15,
-    shadowColor: '#e3ebf8',
+    shadowColor: colors.lightPink,
     shadowOffset: { height: 0, width: 0 },
     shadowOpacity: 0.9,
     flexDirection: 'row',
@@ -166,14 +170,14 @@ const styles = StyleSheet.create({
     width: width / 2,
     height: width / 2,
     borderRadius: width / 2,
-    backgroundColor: '#e3ebf8',
+    backgroundColor: colors.lightBlue,
     alignSelf: 'flex-end',
     position: 'absolute',
     top: '25%',
   },
   c2: {
     height: normalizeY(100),
-    backgroundColor: '#e8d4e5',
+    backgroundColor: colors.lightPink,
     width: '90%',
     alignSelf: 'center',
     bottom: '25%',
@@ -182,7 +186,7 @@ const styles = StyleSheet.create({
     width: width / 2,
     height: width / 2,
     borderRadius: width / 2,
-    backgroundColor: '#e8d4e5',
+    backgroundColor: colors.lightPink,
     position: 'absolute',
     top: 0,
     left: 0,

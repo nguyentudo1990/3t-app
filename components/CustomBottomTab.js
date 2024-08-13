@@ -52,7 +52,11 @@ const CustomBottomTab = ({ state, navigation }) => {
           <TouchableOpacity
             key={index}
             style={styles.tabContent}
-            onPress={() => navigation.navigate(routeName)}>
+            onPress={() => {
+              // console.log('===>', routeName);
+              if (routeName == 'Cart') navigation.navigate('CartScreen');
+              else navigation.navigate(routeName);
+            }}>
             {tab.name == 'Home' ? (
               <View
                 style={{

@@ -1,3 +1,4 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import AppButton from 'components/AppButton';
 import CartCard from 'components/CartCard';
 import ScreenComponent from 'components/ScreenComponent';
@@ -13,14 +14,29 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
 import { cartData } from 'utils/data';
 import { normalizeX, normalizeY } from 'utils/normalize';
 
-function CartScreen(props) {
+function CartScreen({ navigation }) {
   return (
     <ScreenComponent style={styles.container}>
-      <Text style={styles.headerTitle}>My Cart</Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingHorizontal: spacingX._20,
+          justifyContent: 'space-between',
+        }}>
+        <TouchableOpacity style={styles.iconBg} onPress={() => navigation.goBack()}>
+          <MaterialIcons name="arrow-back-ios-new" size={18} color="black" />
+        </TouchableOpacity>
+        <Typo size={22} style={styles.headerTitle}>
+          My Cart
+        </Typo>
+        <View style={{ width: normalizeX(35) }} />
+      </View>
       <FlatList
         data={cartData}
         style={{ flex: 1 }}
@@ -48,7 +64,7 @@ function CartScreen(props) {
           <AppButton label={'Checkout'} />
         </View>
       </KeyboardAvoidingView>
-      <View style={{ height: '12%', backgroundColor: colors.white }} />
+      {/* <View style={{ height: '12%', backgroundColor: colors.white }} /> */}
     </ScreenComponent>
   );
 }
@@ -71,11 +87,15 @@ const Row = ({ title, price }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'grayBG',
-    paddingBottom: spacingY._20,
+    // paddingBottom: spacingY._20,
+  },
+  iconBg: {
+    backgroundColor: colors.white,
+    padding: spacingY._10,
+    borderRadius: radius._20,
   },
   headerTitle: {
     fontWeight: 'bold',
-    fontSize: normalizeY(22),
     paddingVertical: spacingY._10,
     alignSelf: 'center',
   },
@@ -112,7 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     paddingTop: spacingY._20,
     paddingHorizontal: spacingX._20,
-    paddingBottom: spacingY._10,
+    paddingBottom: spacingY._20,
   },
   row: {
     height: height.btn,

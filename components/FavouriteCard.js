@@ -7,7 +7,7 @@ import { normalizeX, normalizeY } from 'utils/normalize';
 import { spacingY } from 'config/spacing';
 const { width } = Dimensions.get('screen');
 
-function CartCard({ item }) {
+function FavouriteCard({ item }) {
   const imgSize = width * 0.2;
   return (
     <View style={styles.container}>
@@ -33,14 +33,7 @@ function CartCard({ item }) {
           />
         </View>
         <Typo style={styles.catText}>{item.category}</Typo>
-        <View style={styles.row}>
-          <Typo style={{ fontWeight: 'bold' }}>{item.price}</Typo>
-          <View style={styles.countContanier}>
-            <Typo style={{ fontWeight: 'bold' }}>-</Typo>
-            <Typo style={{ fontWeight: 'bold' }}>1</Typo>
-            <Typo style={{ fontWeight: 'bold' }}>+</Typo>
-          </View>
-        </View>
+        <Typo style={{ fontWeight: 'bold' }}>{item.price}</Typo>
       </View>
     </View>
   );
@@ -84,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CartCard;
+export default FavouriteCard;
