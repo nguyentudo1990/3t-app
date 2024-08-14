@@ -6,12 +6,14 @@ import SearchBar from 'components/SearchBar';
 import Typo from 'components/Typo';
 import colors from 'config/colors';
 import { radius, spacingX, spacingY } from 'config/spacing';
-import React from 'react';
+import FilterModal from 'model/FilterModal';
+import React, { useState } from 'react';
 import { View, StyleSheet, FlatList, Dimensions, ScrollView, Image } from 'react-native';
 import { cartData, categories } from 'utils/data';
 import { normalizeX, normalizeY } from 'utils/normalize';
 
 function HomeScreen(props) {
+  const [filterModalVisible, setFilterModalVisible] = useState(false);
   return (
     <ScreenComponent style={styles.container}>
       <View style={styles.header}>
@@ -23,7 +25,7 @@ function HomeScreen(props) {
         </View>
       </View>
 
-      <SearchBar />
+      <SearchBar onPress={() => setFilterModalVisible(true)} />
       <ScrollView
         contentContainerStyle={{ paddingBottom: spacingY._60 }}
         showsVerticalScrollIndicator={false}>
@@ -69,12 +71,14 @@ function HomeScreen(props) {
           />
         </ScrollView>
       </ScrollView>
+      <FilterModal visible={filterModalVisible} setVisible={setFilterModalVisible} />
     </ScreenComponent>
   );
 }
 const styles = StyleSheet.create({
   container: {
     paddingBottom: spacingY._20,
+    backgroundColor: colors.white,
   },
   header: {
     flexDirection: 'row',

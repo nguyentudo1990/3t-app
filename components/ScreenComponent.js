@@ -5,7 +5,7 @@ import colors from 'config/colors';
 const { height } = Dimensions.get('window');
 
 export default function ScreenComponent({ style, children }) {
-  let paddingTop = Platform.OS === 'ios' ? height * 0.05 : 10;
+  let paddingTop = Platform.OS === 'ios' ? height * 0.06 : 10;
 
   return (
     <View style={[{ paddingTop, backgroundColor: colors.grayBG }, { ...style }]} flex={1}>

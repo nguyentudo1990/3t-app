@@ -70,4 +70,48 @@ const categories = [
     name: 'Smart Watches',
   },
 ];
-export { cartData, sliderImages, categories };
+
+const CATEGORIES = [
+  'T-shirts',
+  'Jackets',
+  'Shirts',
+  'Hoodies',
+  'Jumpers',
+  'Trousers',
+  'Jeans',
+  'Joggers',
+  'Vests',
+  'Sweatshirts',
+  'Socks',
+  'Shorts',
+];
+
+const STYLES = ['Regular', 'Oversized', 'Slim', 'Relaxed', 'Skinny', 'Muscie'];
+const BRANDS = [
+  'Nike',
+  'Adidas',
+  'Yeezy',
+  'New Balance',
+  'Supreme',
+  'Gap',
+  'Balenciaga',
+  'Off White',
+  'Vans',
+  'Carhartt',
+  'Asics',
+  'Burberry',
+];
+const COLORS = [
+  'Blue',
+  'Red',
+  'Green',
+  'Yellow',
+  'Brown',
+  'Pink',
+  'Purple',
+  'Black',
+  'White',
+  'Gray',
+];
+const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '36', '38', '40', '42', '44', '46'];
+export { cartData, sliderImages, categories, CATEGORIES, STYLES, BRANDS, COLORS, SIZES };

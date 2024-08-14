@@ -1,15 +1,17 @@
 import React from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { radius, spacingX, spacingY } from 'config/spacing';
 import { Feather, Octicons } from '@expo/vector-icons';
 import colors from 'config/colors';
 
-function SearchBar(props) {
+function SearchBar({ onPress }) {
   return (
     <View style={styles.searchbar}>
       <Feather name="search" size={24} color="black" />
       <TextInput placeholder="Search..." style={styles.input} />
-      <Octicons name="filter" size={20} color="black" />
+      <TouchableOpacity onPress={onPress}>
+        <Octicons name="filter" size={20} color="black" />
+      </TouchableOpacity>
     </View>
   );
 }
