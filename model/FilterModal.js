@@ -239,6 +239,11 @@ function FilterModal({ visible, setVisible }) {
                 setHigh(parseInt(high));
               }}
             />
+            <View style={styles.resultsView}>
+              <Typo size={12} style={{ color: colors.white }}>
+                Show 32 Results
+              </Typo>
+            </View>
           </ScrollView>
         </View>
       </Modal>
@@ -298,6 +303,14 @@ const styles = StyleSheet.create({
     borderRadius: spacingY._20,
     gap: spacingX._5,
     borderColor: colors.lightGray,
+  },
+  resultsView: {
+    backgroundColor: colors.primary,
+    padding: spacingY._15,
+    paddingVertical: spacingY._7,
+    marginTop: spacingY._10,
+    borderRadius: radius._20,
+    alignSelf: 'flex-start',
   },
 });
 
