@@ -13,6 +13,7 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import { BRANDS, CATEGORIES, COLORS, STYLES, SIZES } from 'utils/data';
 import { normalizeY } from 'utils/normalize';
 const { height } = Dimensions.get('screen');
@@ -67,6 +68,22 @@ function FilterModal({ visible, setVisible }) {
     }
   };
 
+  const Heading = ({ title, index }) => {
+    return (
+      <Animated.View
+        entering={FadeInDown.delay(index * 50)
+          .duration(600)
+          .springify()
+          .damping(5)
+          .stiffness(50)}>
+        <Typo size={16} style={styles.heading}>
+          {title}
+        </Typo>
+        <View style={styles.line} />
+      </Animated.View>
+    );
+  };
+
   return (
     <>
       <Modal transparent visible={visible} animationType="slide">
@@ -84,8 +101,14 @@ function FilterModal({ visible, setVisible }) {
           <ScrollView
             contentContainerStyle={{ paddingBottom: '15%' }}
             showsVerticalScrollIndicator={false}>
-            <Heading title={'Category'} />
-            <ScrollView horizontal>
+            <Heading title={'Category'} index={1} />
+            <Animated.ScrollView
+              horizontal
+              entering={FadeInDown.delay(1 * 50)
+                .duration(600)
+                .springify()
+                .damping(5)
+                .stiffness(50)}>
               <FlatList
                 scrollEnabled={false}
                 data={CATEGORIES}
@@ -108,9 +131,15 @@ function FilterModal({ visible, setVisible }) {
                   );
                 }}
               />
-            </ScrollView>
-            <Heading title={'Style'} />
-            <ScrollView horizontal>
+            </Animated.ScrollView>
+            <Heading title={'Style'} index={2} />
+            <Animated.ScrollView
+              horizontal
+              entering={FadeInDown.delay(2 * 50)
+                .duration(600)
+                .springify()
+                .damping(5)
+                .stiffness(50)}>
               <FlatList
                 scrollEnabled={false}
                 data={STYLES}
@@ -133,9 +162,15 @@ function FilterModal({ visible, setVisible }) {
                   );
                 }}
               />
-            </ScrollView>
-            <Heading title={'Brand'} />
-            <ScrollView horizontal>
+            </Animated.ScrollView>
+            <Heading title={'Brand'} index={3} />
+            <Animated.ScrollView
+              horizontal
+              entering={FadeInDown.delay(3 * 50)
+                .duration(600)
+                .springify()
+                .damping(5)
+                .stiffness(50)}>
               <FlatList
                 scrollEnabled={false}
                 data={BRANDS}
@@ -158,9 +193,15 @@ function FilterModal({ visible, setVisible }) {
                   );
                 }}
               />
-            </ScrollView>
-            <Heading title={'Color'} />
-            <ScrollView horizontal>
+            </Animated.ScrollView>
+            <Heading title={'Color'} index={4} />
+            <Animated.ScrollView
+              horizontal
+              entering={FadeInDown.delay(4 * 50)
+                .duration(600)
+                .springify()
+                .damping(5)
+                .stiffness(50)}>
               <FlatList
                 scrollEnabled={false}
                 data={COLORS}
@@ -192,9 +233,15 @@ function FilterModal({ visible, setVisible }) {
                   );
                 }}
               />
-            </ScrollView>
-            <Heading title={'Size'} />
-            <ScrollView horizontal>
+            </Animated.ScrollView>
+            <Heading title={'Size'} index={5} />
+            <Animated.ScrollView
+              horizontal
+              entering={FadeInDown.delay(5 * 50)
+                .duration(600)
+                .springify()
+                .damping(5)
+                .stiffness(50)}>
               <FlatList
                 scrollEnabled={false}
                 data={SIZES}
@@ -217,8 +264,8 @@ function FilterModal({ visible, setVisible }) {
                   );
                 }}
               />
-            </ScrollView>
-            <Heading title={'Price Range'} />
+            </Animated.ScrollView>
+            <Heading title={'Price Range'} index={6} />
             <View>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Typo>${low}</Typo>
@@ -249,17 +296,6 @@ function FilterModal({ visible, setVisible }) {
     </>
   );
 }
-
-const Heading = ({ title }) => {
-  return (
-    <>
-      <Typo size={16} style={styles.heading}>
-        {title}
-      </Typo>
-      <View style={styles.line} />
-    </>
-  );
-};
 
 const styles = StyleSheet.create({
   container: {
