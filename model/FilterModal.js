@@ -234,7 +234,6 @@ function FilterModal({ visible, setVisible }) {
               trackStyle={{ backgroundColor: colors.lightGray }}
               value={[low, high]}
               onValueChange={([low, high]) => {
-                console.log(parseInt(low), parseInt(high));
                 setLow(parseInt(low));
                 setHigh(parseInt(high));
               }}

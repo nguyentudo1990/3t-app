@@ -16,6 +16,7 @@ import {
   Platform,
   TouchableOpacity,
 } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import { cartData } from 'utils/data';
 import { normalizeX, normalizeY } from 'utils/normalize';
 
@@ -42,8 +43,15 @@ function CartScreen({ navigation }) {
         style={{ flex: 1 }}
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={styles.listContainer}
-        renderItem={({ item }) => {
-          return <CartCard item={item} />;
+        renderItem={({ item, index }) => {
+          return (
+            <Animated.View
+              entering={FadeInDown.delay(index * 100)
+                .duration(500)
+                .damping(14)}>
+              <CartCard item={item} />
+            </Animated.View>
+          );
         }}
       />
       <KeyboardAvoidingView

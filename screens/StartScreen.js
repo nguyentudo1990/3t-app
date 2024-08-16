@@ -5,6 +5,7 @@ import { useState } from 'react';
 import StartSelector from 'components/StartSelector';
 import { radius, spacingY } from 'config/spacing';
 import Typo from 'components/Typo';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 const { width, height } = Dimensions.get('screen');
 let paddingTop = Platform.OS === 'ios' ? height * 0.07 : spacingY._10;
 
@@ -23,16 +24,20 @@ function StartScreen(props) {
           <Image source={require('../assets/startImage.png')} style={styles.img} />
         </View>
         <View>
-          <Typo size={26} style={styles.text}>
-            Discover Your
-          </Typo>
-          <Typo size={26} style={styles.text}>
-            Best Products Here
-          </Typo>
-          <Typo style={[styles.body, { marginTop: '5%' }]}>
-            Explore all the most exiting best products
-          </Typo>
-          <Typo style={styles.body}>based on your interest and needs here</Typo>
+          <Animated.View entering={FadeInDown.delay(100).duration(500).damping(14)}>
+            <Typo size={26} style={styles.text}>
+              Discover Your
+            </Typo>
+            <Typo size={26} style={styles.text}>
+              Best Products Here
+            </Typo>
+          </Animated.View>
+          <Animated.View entering={FadeInDown.delay(150).duration(500).damping(14)}>
+            <Typo style={[styles.body, { marginTop: '5%' }]}>
+              Explore all the most exiting best products
+            </Typo>
+            <Typo style={styles.body}>based on your interest and needs here</Typo>
+          </Animated.View>
         </View>
         <StartSelector selected={selected} setSelected={setSelected} />
       </BlurView>

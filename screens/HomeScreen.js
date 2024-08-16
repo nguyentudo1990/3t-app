@@ -1,4 +1,5 @@
-import { Entypo, FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { Entypo, Ionicons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
 import HomeCard from 'components/HomeCard';
 import ImageSlideShow from 'components/ImageSlideShow';
 import ScreenComponent from 'components/ScreenComponent';
@@ -7,13 +8,21 @@ import Typo from 'components/Typo';
 import colors from 'config/colors';
 import { radius, spacingX, spacingY } from 'config/spacing';
 import FilterModal from 'model/FilterModal';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, FlatList, Dimensions, ScrollView, Image } from 'react-native';
+import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 import { cartData, categories } from 'utils/data';
 import { normalizeX, normalizeY } from 'utils/normalize';
 
 function HomeScreen(props) {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
+  const [key, setKey] = useState(0);
+
+  useFocusEffect(
+    useCallback(() => {
+      setKey((prevKey) => prevKey + 1);
+    }, [])
+  );
   return (
     <ScreenComponent style={styles.container}>
       <View style={styles.header}>
@@ -37,14 +46,19 @@ function HomeScreen(props) {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.catContainer}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => {
+          renderItem={({ item, index }) => {
             return (
-              <View style={styles.catCircle}>
+              <Animated.View
+                key={`${key}-${index}`}
+                style={styles.catCircle}
+                entering={FadeInRight.delay(index * 100)
+                  .duration(500)
+                  .damping(14)}>
                 <Image source={{ uri: item.url }} style={styles.catImg} />
                 <Typo size={12} style={styles.catName}>
                   {item.name}
                 </Typo>
-              </View>
+              </Animated.View>
             );
           }}
         />
@@ -65,8 +79,16 @@ function HomeScreen(props) {
               paddingHorizontal: spacingX._20,
             }}
             columnWrapperStyle={{ gap: spacingX._20 }}
-            renderItem={({ item }) => {
-              return <HomeCard item={item} />;
+            renderItem={({ item, index }) => {
+              return (
+                <Animated.View
+                  key={`${key}-${index}`}
+                  entering={FadeInDown.delay(index * 100)
+                    .duration(500)
+                    .damping(14)}>
+                  <HomeCard item={item} />
+                </Animated.View>
+              );
             }}
           />
         </ScrollView>

@@ -1,14 +1,52 @@
-import { AntDesign, Feather, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
 import ScreenComponent from 'components/ScreenComponent';
 import Typo from 'components/Typo';
 import colors from 'config/colors';
-import { spacingX, spacingY } from 'config/spacing';
-import React from 'react';
+import { radius, spacingX, spacingY } from 'config/spacing';
+import { BlurView } from 'expo-blur';
+import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
+import Animated, { FadeInRight } from 'react-native-reanimated';
+import { normalizeY } from 'utils/normalize';
 
 function ProfileScreen(props) {
+  const [key, setKey] = useState(0);
+
+  useFocusEffect(
+    useCallback(() => {
+      setKey((prevKey) => prevKey + 1);
+    }, [])
+  );
+
+  const Row = ({ icon, title, iconColor, index }) => {
+    return (
+      <Animated.View
+        style={styles.row}
+        entering={FadeInRight.delay(index * 50)
+          .duration(500)
+          .damping(14)}
+        key={`${key}-${index}`}>
+        <View
+          style={{ backgroundColor: iconColor, padding: spacingY._10, borderRadius: radius._12 }}>
+          {icon}
+        </View>
+        <Typo size={16} style={{ fontWeight: '500', flex: 1 }}>
+          {title}
+        </Typo>
+        <Octicons name="chevron-right" size={24} color="black" />
+      </Animated.View>
+    );
+  };
   return (
     <ScreenComponent style={styles.container}>
+      <BlurView intensity={100} tint="extraLight" style={styles.blurContainer} />
+      <MaterialCommunityIcons
+        name="camera-plus"
+        size={24}
+        color={colors.black}
+        style={{ alignSelf: 'flex-end' }}
+      />
       <View style={styles.topRow}>
         <Image
           source={{
@@ -16,125 +54,112 @@ function ProfileScreen(props) {
           }}
           style={styles.img}
         />
-        <View style={{ gap: spacingY._7 }}>
+        <View style={{ gap: spacingY._7, marginTop: spacingY._5, alignItems: 'center' }}>
           <Typo size={22} style={styles.name}>
             Jack Frost
           </Typo>
-          <Typo>Fashion Model</Typo>
-        </View>
-      </View>
-
-      <View style={styles.detailRow}>
-        <Feather name="phone-call" size={20} color={colors.black} />
-        <Typo>(581)-307-6902</Typo>
-      </View>
-      <View style={styles.detailRow}>
-        <MaterialCommunityIcons name="email-outline" size={20} color={colors.black} />
-        <Typo>jack.frost@gmail.com</Typo>
-      </View>
-
-      <View style={styles.walletRow}>
-        <View style={styles.walletContainer}>
-          <Typo size={18} style={styles.name}>
-            $140.00
+          <Typo size={16} style={{ color: colors.gray, fontWeight: '500' }}>
+            jackfrost@gmail.com
           </Typo>
-          <Typo>Wallet</Typo>
-        </View>
-        <View style={styles.walletContainer}>
-          <Typo size={18} style={styles.name}>
-            12
-          </Typo>
-          <Typo>Orders</Typo>
         </View>
       </View>
-      <Row
-        title={'Your Favorites'}
-        icon={<Feather name="heart" size={24} color={colors.primary} />}
-      />
-      <Row
-        title={'Payment'}
-        icon={<MaterialIcons name="payment" size={24} color={colors.primary} />}
-      />
-      <Row
-        title={'Tell Your Friend'}
-        icon={<AntDesign name="deleteusergroup" size={24} color={colors.primary} />}
-      />
-      <Row title={'Promotions'} icon={<AntDesign name="tago" size={24} color={colors.primary} />} />
-      <Row title={'Settings'} icon={<Feather name="settings" size={24} color={colors.primary} />} />
-      <View style={styles.line} />
-      <Row title={'Log out'} icon={<AntDesign name="logout" size={24} color={colors.primary} />} />
+      <View style={{ flex: 1 }} />
+      <View style={styles.bottomContainer}>
+        <Row
+          title={'Edit profile'}
+          iconColor={'#fbdbe6'}
+          icon={<Ionicons name="person" size={24} color={'#eb4b8b'} />}
+          index={0}
+        />
+        <Row
+          title={'My stats'}
+          iconColor={'#dedffd'}
+          icon={<Ionicons name="stats-chart" size={24} color={'#5d5be5'} />}
+          index={1}
+        />
+        <Row
+          title={'Settings'}
+          iconColor={'#ffe3ce'}
+          icon={<Ionicons name="settings" size={24} color={'#f97113'} />}
+          index={2}
+        />
+        <Row
+          title={'Invite a friend'}
+          iconColor={'#F5E8E4'} // '#E9F8F9' '#176B87'
+          icon={<Ionicons name="person-add" size={24} color={'#860A35'} />}
+          index={3}
+        />
+        <View style={styles.line} />
+        <Row
+          title={'Help'}
+          iconColor={'#d1d1d1'}
+          icon={<Ionicons name="chatbubble-ellipses" size={24} color={colors.black} />}
+          index={4}
+        />
+        <Row
+          title={'Log out'}
+          iconColor={'#d1d1d1'}
+          icon={<MaterialCommunityIcons name="logout" size={24} color={colors.black} />}
+          index={5}
+        />
+      </View>
     </ScreenComponent>
   );
 }
 
-const Row = ({ icon, title }) => {
-  return (
-    <View style={styles.row}>
-      {icon}
-      <Typo size={16} style={{ fontWeight: '500' }}>
-        {title}
-      </Typo>
-    </View>
-  );
-};
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: spacingX._20,
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightPrimary,
+  },
+
+  blurContainer: {
+    ...StyleSheet.absoluteFill,
+    paddingTop: 0,
+    padding: spacingY._20,
+    paddingBottom: '10%',
+    textAlign: 'center',
+    overflow: 'hidden',
+    borderRadius: radius._20,
   },
   topRow: {
-    flexDirection: 'row',
     paddingVertical: spacingY._15,
     alignItems: 'center',
-    gap: spacingX._20,
+    gap: spacingX._10,
+    marginTop: '3%',
   },
   img: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    borderWidth: 2,
+    height: normalizeY(110),
+    width: normalizeY(110),
+    borderRadius: normalizeY(60),
+    borderWidth: normalizeY(4),
     borderColor: colors.primary,
   },
   name: {
     fontWeight: '600',
-    color: colors.primary,
-  },
-  detailRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacingX._10,
-    paddingVertical: spacingY._10,
-  },
-  walletRow: {
-    flexDirection: 'row',
-    width: '115%',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: colors.gray,
-    alignSelf: 'center',
-    marginVertical: spacingY._15,
-  },
-  walletContainer: {
-    flex: 1,
-    borderRightWidth: 1,
-    borderColor: colors.gray,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: spacingY._15,
-    gap: spacingY._7,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacingX._10,
-    paddingVertical: spacingY._15,
+    paddingVertical: spacingY._10,
+    paddingRight: spacingX._5,
   },
   line: {
     height: 0.5,
-    width: '115%',
+    width: '80%',
     backgroundColor: colors.gray,
     alignSelf: 'center',
-    marginVertical: spacingY._15,
+    marginVertical: spacingY._10,
+  },
+  bottomContainer: {
+    backgroundColor: colors.white,
+    borderRadius: spacingY._20,
+    shadowColor: colors.black,
+    shadowOffset: { height: 0, width: 0 },
+    shadowOpacity: 0.5,
+    padding: spacingY._15,
+    marginBottom: '30%',
   },
 });
 
