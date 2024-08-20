@@ -9,13 +9,14 @@ import colors from 'config/colors';
 import { radius, spacingX, spacingY } from 'config/spacing';
 import FilterModal from 'model/FilterModal';
 import React, { useCallback, useState } from 'react';
-import { View, StyleSheet, FlatList, Dimensions, ScrollView, Image } from 'react-native';
+import { View, StyleSheet, FlatList, ScrollView, Image, TouchableOpacity } from 'react-native';
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 import { cartData, categories } from 'utils/data';
 import { normalizeX, normalizeY } from 'utils/normalize';
 
 function HomeScreen(props) {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
+  const [data, setData] = useState(cartData);
   const [key, setKey] = useState(0);
 
   useFocusEffect(
@@ -23,6 +24,15 @@ function HomeScreen(props) {
       setKey((prevKey) => prevKey + 1);
     }, [])
   );
+
+  const handleFilter = (category) => {
+    if (category === 'All') {
+      setData(cartData);
+    } else {
+      const filteredData = cartData.filter((item) => item.category === category);
+      setData(filteredData);
+    }
+  };
   return (
     <ScreenComponent style={styles.container}>
       <View style={styles.header}>
@@ -41,7 +51,7 @@ function HomeScreen(props) {
         <ImageSlideShow />
 
         <FlatList
-          data={[...categories, ...categories]}
+          data={categories}
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.catContainer}
@@ -54,10 +64,12 @@ function HomeScreen(props) {
                 entering={FadeInRight.delay(index * 100)
                   .duration(500)
                   .damping(14)}>
-                <Image source={{ uri: item.url }} style={styles.catImg} />
-                <Typo size={12} style={styles.catName}>
-                  {item.name}
-                </Typo>
+                <TouchableOpacity onPress={() => handleFilter(item.name)}>
+                  <Image source={{ uri: item.url }} style={styles.catImg} />
+                  <Typo size={12} style={styles.catName}>
+                    {item.name}
+                  </Typo>
+                </TouchableOpacity>
               </Animated.View>
             );
           }}
@@ -72,7 +84,7 @@ function HomeScreen(props) {
           <FlatList
             scrollEnabled={false}
             numColumns={2}
-            data={cartData}
+            data={data}
             keyExtractor={(item, index) => index.toString()}
             contentContainerStyle={{
               gap: spacingX._20,

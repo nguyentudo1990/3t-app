@@ -1,16 +1,20 @@
 import React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from 'config/colors';
-import { View, Image, Dimensions, StyleSheet } from 'react-native';
+import { View, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import Typo from './Typo';
 import { normalizeX, normalizeY } from 'utils/normalize';
 import { spacingY } from 'config/spacing';
+import { useNavigation } from '@react-navigation/native';
 const { width } = Dimensions.get('screen');
 
 function FavouriteCard({ item }) {
+  const navigation = useNavigation();
   const imgSize = width * 0.2;
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('ItemDetails', item)}>
       <View style={styles.imgContainer}>
         <Image
           source={item.url}
@@ -35,7 +39,7 @@ function FavouriteCard({ item }) {
         <Typo style={styles.catText}>{item.category}</Typo>
         <Typo style={{ fontWeight: 'bold' }}>{item.price}</Typo>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
