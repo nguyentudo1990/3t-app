@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, Dimensions, StyleSheet, Image } from 'react-native';
 import colors from '../config/colors';
 import { sliderImages } from '../utils/data';
-import { normalizeX, normalizeY } from '../utils/normalize';
+import { normalizeX } from '../utils/normalize';
 import { radius, spacingX, spacingY } from 'config/spacing';
 
 const { width: screenWidth, height } = Dimensions.get('window');

@@ -35,7 +35,7 @@ function NotificationsScreen({ navigation }) {
         contentContainerStyle={{
           padding: SPACING,
         }}
-        keyExtractor={(item) => item.key}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => {
           const inputRange = [-1, 0, ITEM_SIZE * index, ITEM_SIZE * (index + 2)];
           const scale = scrollY.interpolate({
@@ -50,7 +50,6 @@ function NotificationsScreen({ navigation }) {
           const isEven = index % 2 == 0;
           return (
             <Animated.View
-              key={item.id}
               style={[
                 styles.notiView,
                 {
