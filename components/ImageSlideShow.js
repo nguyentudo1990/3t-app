@@ -15,17 +15,23 @@ function ImageSlideShow(props) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      scrollViewRef.current.scrollTo({
-        x: (currentIndex + 1) * adjustedWidth,
-        animated: true,
-      });
-      setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+      scrollToNextImage();
     }, 2000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, images]);
+  }, [currentIndex]);
 
-  const handleSlide = () => {};
+  const scrollToNextImage = () => {
+    let nextIndex = currentIndex + 1;
+    if (nextIndex >= images.length) {
+      nextIndex = 0;
+    }
+    scrollViewRef.current.scrollTo({
+      x: nextIndex * adjustedWidth,
+      animated: true,
+    });
+    setCurrentIndex(nextIndex);
+  };
 
   return (
     <View style={styles.container}>
@@ -34,12 +40,11 @@ function ImageSlideShow(props) {
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        onScroll={handleSlide}
+        scrollEventThrottle={16}
         onMomentumScrollEnd={(ev) => {
-          const currentIndex = Math.floor(ev.nativeEvent.contentOffset.x / adjustedWidth);
-          setCurrentIndex(currentIndex);
-        }}
-        scrollEventThrottle={16}>
+          const index = Math.floor(ev.nativeEvent.contentOffset.x / adjustedWidth);
+          setCurrentIndex(index);
+        }}>
         {images.map((image, index) => (
           <Image
             key={index}
@@ -57,7 +62,7 @@ function ImageSlideShow(props) {
             style={[
               styles.indicator,
               {
-                width: index == currentIndex ? 15 : 8,
+                width: index === currentIndex ? 15 : 8,
                 backgroundColor: index === currentIndex ? colors.black : colors.transparent,
               },
             ]}
