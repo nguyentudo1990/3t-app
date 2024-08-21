@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   image: {
-    resizeMode: 'cover',
+    resizeMode: 'stretch',
     height: '100%',
     width: adjustedWidth,
   },

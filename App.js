@@ -11,7 +11,7 @@ import AuthNavigator from 'navigation/AuthNavigator';
 import AuthContext from 'auth/AuthContext';
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState('123');
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <ThemeProvider theme={theme}>

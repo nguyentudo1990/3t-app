@@ -14,7 +14,7 @@ import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 import { cartData, categories } from 'utils/data';
 import { normalizeX, normalizeY } from 'utils/normalize';
 
-function HomeScreen(props) {
+function HomeScreen({ navigation }) {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [data, setData] = useState(cartData);
   const [key, setKey] = useState(0);
@@ -39,9 +39,11 @@ function HomeScreen(props) {
         <View style={styles.iconBg}>
           <Entypo name="grid" size={24} color="black" />
         </View>
-        <View style={styles.iconBg}>
+        <TouchableOpacity
+          style={styles.iconBg}
+          onPress={() => navigation.navigate('Notifications')}>
           <Ionicons name="notifications-outline" size={24} color="black" />
-        </View>
+        </TouchableOpacity>
       </View>
 
       <SearchBar onPress={() => setFilterModalVisible(true)} />

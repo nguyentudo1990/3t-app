@@ -8,6 +8,7 @@ export default {
   purple: '#6366F1',
   primary: '#ff660e',
   lightPrimary: 'rgba(255, 102, 14, 0.1)',
+  light: '#f8e8df',
   grayBG: '#f5f5f5',
   red: '#FF0000',
   lightGray: '#c2c2c2',
