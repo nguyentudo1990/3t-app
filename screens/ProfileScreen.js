@@ -1,17 +1,19 @@
 import { Ionicons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
+import useAuth from 'auth/useAuth';
 import ScreenComponent from 'components/ScreenComponent';
 import Typo from 'components/Typo';
 import colors from 'config/colors';
 import { radius, spacingX, spacingY } from 'config/spacing';
 import { BlurView } from 'expo-blur';
 import React, { useCallback, useState } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Animated, { FadeInRight } from 'react-native-reanimated';
 import { normalizeY } from 'utils/normalize';
 
 function ProfileScreen(props) {
   const [key, setKey] = useState(0);
+  const Auth = useAuth();
 
   useFocusEffect(
     useCallback(() => {
@@ -19,23 +21,25 @@ function ProfileScreen(props) {
     }, [])
   );
 
-  const Row = ({ icon, title, iconColor, index }) => {
+  const Row = ({ icon, title, iconColor, index, onPress }) => {
     return (
-      <Animated.View
-        style={styles.row}
-        entering={FadeInRight.delay(index * 50)
-          .duration(500)
-          .damping(14)}
-        key={`${key}-${index}`}>
-        <View
-          style={{ backgroundColor: iconColor, padding: spacingY._10, borderRadius: radius._12 }}>
-          {icon}
-        </View>
-        <Typo size={16} style={{ fontWeight: '500', flex: 1 }}>
-          {title}
-        </Typo>
-        <Octicons name="chevron-right" size={24} color="black" />
-      </Animated.View>
+      <TouchableOpacity onPress={onPress}>
+        <Animated.View
+          style={styles.row}
+          entering={FadeInRight.delay(index * 50)
+            .duration(500)
+            .damping(14)}
+          key={`${key}-${index}`}>
+          <View
+            style={{ backgroundColor: iconColor, padding: spacingY._10, borderRadius: radius._12 }}>
+            {icon}
+          </View>
+          <Typo size={16} style={{ fontWeight: '500', flex: 1 }}>
+            {title}
+          </Typo>
+          <Octicons name="chevron-right" size={24} color="black" />
+        </Animated.View>
+      </TouchableOpacity>
     );
   };
   return (
@@ -101,6 +105,7 @@ function ProfileScreen(props) {
           iconColor={'#d1d1d1'}
           icon={<MaterialCommunityIcons name="logout" size={24} color={colors.black} />}
           index={5}
+          onPress={() => Auth.setUser(null)}
         />
       </View>
     </ScreenComponent>
@@ -157,7 +162,8 @@ const styles = StyleSheet.create({
     borderRadius: spacingY._20,
     shadowColor: colors.black,
     shadowOffset: { height: 0, width: 0 },
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.2,
+    shadowRadius: 20,
     padding: spacingY._15,
     marginBottom: '30%',
   },

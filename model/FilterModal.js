@@ -68,22 +68,6 @@ function FilterModal({ visible, setVisible }) {
     }
   };
 
-  const Heading = ({ title, index }) => {
-    return (
-      <Animated.View
-        entering={FadeInDown.delay(index * 50)
-          .duration(600)
-          .springify()
-          .damping(5)
-          .stiffness(50)}>
-        <Typo size={16} style={styles.heading}>
-          {title}
-        </Typo>
-        <View style={styles.line} />
-      </Animated.View>
-    );
-  };
-
   return (
     <>
       <Modal transparent visible={visible} animationType="slide">
@@ -296,6 +280,22 @@ function FilterModal({ visible, setVisible }) {
     </>
   );
 }
+
+const Heading = ({ title, index }) => {
+  return (
+    <Animated.View
+      entering={FadeInDown.delay(index * 50)
+        .duration(600)
+        .springify()
+        .damping(5)
+        .stiffness(50)}>
+      <Typo size={16} style={styles.heading}>
+        {title}
+      </Typo>
+      <View style={styles.line} />
+    </Animated.View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

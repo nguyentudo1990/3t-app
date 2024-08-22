@@ -23,13 +23,7 @@ import { normalizeX, normalizeY } from 'utils/normalize';
 function CartScreen({ navigation }) {
   return (
     <ScreenComponent style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          paddingHorizontal: spacingX._20,
-          justifyContent: 'space-between',
-        }}>
+      <View style={styles.header}>
         <TouchableOpacity style={styles.iconBg} onPress={() => navigation.goBack()}>
           <MaterialIcons name="arrow-back-ios-new" size={18} color="black" />
         </TouchableOpacity>
@@ -69,7 +63,7 @@ function CartScreen({ navigation }) {
           <Row title={'Subtotal'} price={'$245.00'} />
           <View style={styles.separator} />
           <Row title={'Total'} price={'$245.00'} />
-          <AppButton label={'Checkout'} />
+          <AppButton label={'Checkout'} onPress={() => navigation.navigate('Checkout')} />
         </View>
       </KeyboardAvoidingView>
       {/* <View style={{ height: '12%', backgroundColor: colors.white }} /> */}
@@ -96,6 +90,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'grayBG',
     // paddingBottom: spacingY._20,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: spacingX._20,
+    justifyContent: 'space-between',
   },
   iconBg: {
     backgroundColor: colors.white,

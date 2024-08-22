@@ -16,6 +16,7 @@ import { normalizeX, normalizeY } from 'utils/normalize';
 
 function HomeScreen({ navigation }) {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
+  const [selected, setSelected] = useState('All');
   const [data, setData] = useState(cartData);
   const [key, setKey] = useState(0);
 
@@ -26,6 +27,7 @@ function HomeScreen({ navigation }) {
   );
 
   const handleFilter = (category) => {
+    setSelected(category);
     if (category === 'All') {
       setData(cartData);
     } else {
@@ -59,6 +61,7 @@ function HomeScreen({ navigation }) {
           contentContainerStyle={styles.catContainer}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) => {
+            const isSelected = selected == item.name;
             return (
               <Animated.View
                 key={`${key}-${index}`}
@@ -67,8 +70,16 @@ function HomeScreen({ navigation }) {
                   .duration(500)
                   .damping(14)}>
                 <TouchableOpacity onPress={() => handleFilter(item.name)}>
-                  <Image source={{ uri: item.url }} style={styles.catImg} />
-                  <Typo size={12} style={styles.catName}>
+                  <Image
+                    source={{ uri: item.url }}
+                    style={[
+                      styles.catImg,
+                      { borderColor: isSelected ? colors.primary : colors.white },
+                    ]}
+                  />
+                  <Typo
+                    size={12}
+                    style={[styles.catName, { color: isSelected ? colors.primary : colors.black }]}>
                     {item.name}
                   </Typo>
                 </TouchableOpacity>
@@ -128,12 +139,11 @@ const styles = StyleSheet.create({
     borderRadius: radius._20,
   },
   catContainer: {
-    paddingHorizontal: spacingX._20,
+    paddingHorizontal: spacingX._15,
     marginTop: spacingY._10,
   },
   catCircle: {
     alignItems: 'center',
-    gap: spacingY._5,
     width: normalizeX(75),
   },
   catImg: {
@@ -141,6 +151,8 @@ const styles = StyleSheet.create({
     width: normalizeY(60),
     borderRadius: radius._30,
     backgroundColor: 'pink',
+    borderWidth: normalizeY(2),
+    marginBottom: spacingY._5,
   },
   catName: {
     textAlign: 'center',

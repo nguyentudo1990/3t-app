@@ -7,7 +7,7 @@ import Typo from './Typo';
 function AppButton({ label, style, onPress }) {
   return (
     <TouchableOpacity style={[styles.button, { ...style }]} onPress={onPress}>
-      <Typo style={{ color: colors.white }} size={18}>
+      <Typo style={{ color: colors.white, fontWeight: '500' }} size={18}>
         {label}
       </Typo>
     </TouchableOpacity>

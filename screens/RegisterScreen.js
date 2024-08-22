@@ -37,7 +37,7 @@ function RegisterScreen(props) {
       </View>
       <BlurView intensity={100} tint="light" style={styles.blurContainer}>
         <Typo size={26} style={styles.text}>
-          Hello there!
+          Hello There!
         </Typo>
         <View style={{ marginVertical: '5%' }}>
           <Typo size={20} style={styles.body}>
