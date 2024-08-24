@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     paddingHorizontal: spacingX._20,
-    padding: spacingY._10,
+    padding: spacingY._5,
     justifyContent: 'space-between',
   },
   iconBg: {

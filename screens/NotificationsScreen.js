@@ -1,31 +1,24 @@
 import React, { useRef } from 'react';
-import { StyleSheet, View, Animated, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Animated } from 'react-native';
 
 import colors from '../config/colors';
 import { notifications } from 'utils/data';
 import ScreenComponent from 'components/ScreenComponent';
 import { radius, spacingX, spacingY } from 'config/spacing';
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import Typo from 'components/Typo';
 import { normalizeY } from 'utils/normalize';
+import Header from 'components/Header';
 
 function NotificationsScreen({ navigation }) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const SPACING = spacingY._20;
   const CARD_HEIGHT = normalizeY(55);
   const ITEM_SIZE = CARD_HEIGHT + SPACING * 3;
-  const iconSize = normalizeY(18);
 
   return (
     <ScreenComponent style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.iconBg} onPress={() => navigation.goBack()}>
-          <MaterialIcons name="arrow-back-ios-new" size={iconSize} color="black" />
-        </TouchableOpacity>
-        <Typo size={20} style={styles.headerTxt}>
-          Notifications
-        </Typo>
-      </View>
+      <Header label={'Notifications'} />
       <Animated.FlatList
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
           useNativeDriver: true,
@@ -102,24 +95,6 @@ function NotificationsScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
-  },
-  header: {
-    alignItems: 'center',
-    zIndex: 1,
-    flexDirection: 'row',
-    paddingHorizontal: spacingX._20,
-    paddingVertical: spacingY._10,
-    gap: spacingX._10,
-    borderBottomWidth: 0.5,
-    borderColor: colors.lighterGray,
-  },
-  iconBg: {
-    backgroundColor: colors.lighterGray,
-    padding: spacingY._10,
-    borderRadius: radius._20,
-  },
-  headerTxt: {
-    fontWeight: '700',
   },
   notiView: {
     flexDirection: 'row',

@@ -1,27 +1,20 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import AppButton from 'components/AppButton';
+import Header from 'components/Header';
 import ScreenComponent from 'components/ScreenComponent';
 import Typo from 'components/Typo';
 import colors from 'config/colors';
 import { height, radius, spacingX, spacingY } from 'config/spacing';
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { normalizeX, normalizeY } from 'utils/normalize';
+import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { normalizeY } from 'utils/normalize';
 
-function CheckoutScreen({ navigation }) {
+function CheckoutScreen({}) {
   const [selectedMethod, setSelectedMethod] = useState('Credit Card');
   const [selectedAddress, setSelectedAddress] = useState('Home');
   return (
     <ScreenComponent style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.iconBg} onPress={() => navigation.goBack()}>
-          <MaterialIcons name="arrow-back-ios-new" size={18} color="black" />
-        </TouchableOpacity>
-        <Typo size={22} style={styles.headerTitle}>
-          Checkout
-        </Typo>
-        <View style={{ width: normalizeX(35) }} />
-      </View>
+      <Header label={'Checkout'} />
       <ScrollView style={{ flex: 1, padding: spacingX._20 }}>
         <Typo size={18} style={{ fontWeight: '600', marginBottom: spacingY._15 }}>
           Shipping to
@@ -118,22 +111,6 @@ const AddressCard = ({ title, selected, setSelected }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'grayBG',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: spacingX._20,
-    justifyContent: 'space-between',
-  },
-  iconBg: {
-    backgroundColor: colors.white,
-    padding: spacingY._10,
-    borderRadius: radius._20,
-  },
-  headerTitle: {
-    fontWeight: 'bold',
-    marginBottom: spacingY._10,
-    alignSelf: 'center',
   },
   checkoutContainer: {
     borderTopLeftRadius: radius._20,

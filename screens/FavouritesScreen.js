@@ -45,7 +45,7 @@ function FavouritesScreen(props) {
 const styles = StyleSheet.create({
   headerTitle: {
     fontWeight: 'bold',
-    paddingVertical: spacingY._10,
+    paddingVertical: spacingY._5,
     alignSelf: 'center',
   },
   listContainer: {

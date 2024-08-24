@@ -1,6 +1,6 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import AppButton from 'components/AppButton';
 import CartCard from 'components/CartCard';
+import Header from 'components/Header';
 import ScreenComponent from 'components/ScreenComponent';
 import Typo from 'components/Typo';
 import colors from 'config/colors';
@@ -14,7 +14,6 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
-  TouchableOpacity,
 } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { cartData } from 'utils/data';
@@ -23,15 +22,7 @@ import { normalizeX, normalizeY } from 'utils/normalize';
 function CartScreen({ navigation }) {
   return (
     <ScreenComponent style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.iconBg} onPress={() => navigation.goBack()}>
-          <MaterialIcons name="arrow-back-ios-new" size={18} color="black" />
-        </TouchableOpacity>
-        <Typo size={22} style={styles.headerTitle}>
-          My Cart
-        </Typo>
-        <View style={{ width: normalizeX(35) }} />
-      </View>
+      <Header label={'My Cart'} />
       <FlatList
         data={cartData}
         style={{ flex: 1 }}
@@ -89,23 +80,6 @@ const Row = ({ title, price }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'grayBG',
-    // paddingBottom: spacingY._20,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: spacingX._20,
-    justifyContent: 'space-between',
-  },
-  iconBg: {
-    backgroundColor: colors.white,
-    padding: spacingY._10,
-    borderRadius: radius._20,
-  },
-  headerTitle: {
-    fontWeight: 'bold',
-    paddingVertical: spacingY._10,
-    alignSelf: 'center',
   },
   listContainer: {
     paddingHorizontal: spacingX._20,
