@@ -6,8 +6,8 @@ import Typo from 'components/Typo';
 import colors from 'config/colors';
 import { height, radius, spacingX, spacingY } from 'config/spacing';
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { normalizeY } from 'utils/normalize';
+import { View, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { normalizeX, normalizeY } from 'utils/normalize';
 
 function CheckoutScreen({}) {
   const [selectedMethod, setSelectedMethod] = useState('Credit Card');
@@ -15,7 +15,10 @@ function CheckoutScreen({}) {
   return (
     <ScreenComponent style={styles.container}>
       <Header label={'Checkout'} />
-      <ScrollView style={{ flex: 1, padding: spacingX._20 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ flex: 1, padding: spacingX._20 }}
+        contentContainerStyle={{ paddingBottom: '10%' }}>
         <Typo size={18} style={{ fontWeight: '600', marginBottom: spacingY._15 }}>
           Shipping to
         </Typo>
@@ -29,10 +32,26 @@ function CheckoutScreen({}) {
           title={'Credit Card'}
           selected={selectedMethod}
           setSelected={setSelectedMethod}
+          img={require('../assets/visa.png')}
         />
-        <MethodRow title={'PayPal'} selected={selectedMethod} setSelected={setSelectedMethod} />
-        <MethodRow title={'Google Pay'} selected={selectedMethod} setSelected={setSelectedMethod} />
-        <MethodRow title={'Apple Pay'} selected={selectedMethod} setSelected={setSelectedMethod} />
+        <MethodRow
+          title={'PayPal'}
+          selected={selectedMethod}
+          setSelected={setSelectedMethod}
+          img={require('../assets/paypal.png')}
+        />
+        <MethodRow
+          title={'Google Pay'}
+          selected={selectedMethod}
+          setSelected={setSelectedMethod}
+          img={require('../assets/google.png')}
+        />
+        <MethodRow
+          title={'Apple Pay'}
+          selected={selectedMethod}
+          setSelected={setSelectedMethod}
+          img={require('../assets/apple.png')}
+        />
       </ScrollView>
 
       <View style={styles.checkoutContainer}>
@@ -62,10 +81,13 @@ const Row = ({ title, price }) => {
   );
 };
 
-const MethodRow = ({ title, selected, setSelected }) => {
+const MethodRow = ({ title, img, selected, setSelected }) => {
   const isSelected = selected == title;
   return (
     <TouchableOpacity style={styles.row} onPress={() => setSelected(title)}>
+      <View style={styles.methodImgBg}>
+        <Image source={img} style={styles.methodImg} />
+      </View>
       <Typo size={15} style={{ color: colors.black, fontWeight: '500', flex: 1 }}>
         {title}
       </Typo>
@@ -130,6 +152,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderColor: colors.grayBG,
     alignItems: 'center',
+    gap: spacingX._10,
+    marginTop: spacingY._10,
+  },
+  methodImgBg: {
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    padding: spacingY._5,
+    borderRadius: radius._10,
+    borderColor: colors.lightGray,
+  },
+  methodImg: {
+    height: normalizeY(30),
+    width: normalizeY(30),
+    resizeMode: 'contain',
   },
   separator: {
     height: normalizeY(2),
