@@ -14,9 +14,9 @@ function StartScreen(props) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.background}>
-        <View style={styles.c1} />
-        <View style={[styles.pinkCircle, { bottom: '25%', left: '15%' }]} />
-        <View style={styles.pinkCircle} />
+        <View style={[styles.c1, { opacity: 0.5 }]} />
+        <View style={[styles.orangeCircle, { bottom: '25%', left: '5%', opacity: 0.5 }]} />
+        <View style={[styles.orangeCircle, { opacity: 0.4 }]} />
         <View style={styles.c2} />
       </View>
       <BlurView intensity={100} tint="light" style={styles.blurContainer}>
@@ -24,7 +24,7 @@ function StartScreen(props) {
           <Image source={require('../assets/startImage.png')} style={styles.img} />
         </View>
         <View>
-          <Animated.View entering={FadeInDown.delay(100).duration(500).damping(14)}>
+          <Animated.View entering={FadeInDown.delay(100).duration(500).springify().damping(12)}>
             <Typo size={26} style={styles.text}>
               Discover Your
             </Typo>
@@ -32,7 +32,7 @@ function StartScreen(props) {
               Best Products Here
             </Typo>
           </Animated.View>
-          <Animated.View entering={FadeInDown.delay(150).duration(500).damping(14)}>
+          <Animated.View entering={FadeInDown.delay(200).duration(500).springify().damping(12)}>
             <Typo style={[styles.body, { marginTop: '5%' }]}>
               Explore all the most exiting best products
             </Typo>
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
     margin: 2,
   },
   c1: {
-    width: width / 2,
-    height: width / 2,
+    width: width / 1.5,
+    height: width / 1.5,
     borderRadius: width / 2,
     backgroundColor: colors.lightBlue,
     alignSelf: 'flex-end',
@@ -99,14 +99,16 @@ const styles = StyleSheet.create({
     width: width / 1.2,
     height: width / 1.2,
     borderRadius: width / 2,
-    backgroundColor: colors.lightPink,
+    backgroundColor: '#fee2e2',
+    opacity: 0.8,
+    marginBottom: 50,
     alignSelf: 'flex-end',
   },
-  pinkCircle: {
-    width: width / 2,
-    height: width / 2,
+  orangeCircle: {
+    width: width / 1.5,
+    height: width / 1.5,
     borderRadius: width / 2,
-    backgroundColor: colors.lightPink,
+    backgroundColor: '#fed7aa',
     position: 'absolute',
     right: 0,
     bottom: 0,

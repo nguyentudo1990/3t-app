@@ -1,4 +1,4 @@
-const cartData = [
+const products = [
   {
     url: require('../assets/products/item1.png'),
     name: 'Wireless Headphone',
@@ -59,16 +59,17 @@ const cartData = [
     category: 'Electronics',
     price: '$120.00',
   },
-  {
-    url: require('../assets/products/item11.png'),
-    name: 'Nike Shoes',
-    category: 'Shoes',
-    price: '$120.00',
-  },
+
   {
     url: require('../assets/products/item12.png'),
     name: 'Smart Watch',
     category: 'Watches',
+    price: '$120.00',
+  },
+  {
+    url: require('../assets/products/item11.png'),
+    name: 'Nike Shoes',
+    category: 'Shoes',
     price: '$120.00',
   },
   {
@@ -85,13 +86,13 @@ const cartData = [
   },
   {
     url: require('../assets/products/item15.png'),
-    name: 'Mens T Shirt',
-    category: "Men's",
+    name: 'Nike shoe',
+    category: 'Shoes',
     price: '$120.00',
   },
   {
     url: require('../assets/products/item16.png'),
-    name: 'Mens Jacket',
+    name: 'T Shirt',
     category: "Men's",
     price: '$120.00',
   },
@@ -134,45 +135,44 @@ const cartData = [
 ];
 
 const sliderImages = [
-  'https://img.freepik.com/free-psd/create-fashion-style-psd-presentation-template-small-business_53876-145331.jpg',
-  'https://img.freepik.com/free-psd/fashion-online-shopping-template-psd-blog-banner_53876-123526.jpg',
-  'https://img.freepik.com/free-psd/fashion-template-design_23-2151198058.jpg',
-  'https://img.freepik.com/free-psd/fashion-business-presentation-template-psd_53876-129196.jpg',
-  'https://img.freepik.com/free-psd/women-rsquo-s-earth-tone-fashion-template-psd-blog-banner_53876-145335.jpg',
-  'https://img.freepik.com/free-psd/flat-design-teacher-s-day-template_23-2150267294.jpg',
+  require('../assets/slide1.png'),
+  require('../assets/slide2.png'),
+  require('../assets/slide3.png'),
+  // require('../assets/slide4.png'),
+  require('../assets/slide5.png'),
 ];
 
 const categories = [
   {
-    url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKQSPw1y7xS9sruQyTYEOjSdRYLeiDMKip7g&s',
+    image: require('../assets/categories/all.png'),
     name: 'All',
   },
   {
-    url: 'https://img.drz.lazcdn.com/static/pk/p/0fc4c971f23271ba24a78727c43b5c3a.jpg_720x720q80.jpg_.webp',
+    image: require('../assets/categories/shoe.png'),
     name: 'Shoes',
   },
   {
-    url: 'https://img.drz.lazcdn.com/g/kf/S63b5c3bc2a9c4b00b482aa200e818bdfx.jpg_720x720q80.jpg_.webp',
+    image: require('../assets/categories/men.png'),
     name: "Men's",
   },
   {
-    url: 'https://img.drz.lazcdn.com/static/pk/p/cdb510fc63e62388a2d3401b93b0b067.jpg_720x720q80.jpg_.webp',
+    image: require('../assets/categories/watch.png'),
     name: 'Watches',
   },
   {
-    url: 'https://img.drz.lazcdn.com/static/pk/p/a5f36a1785bb6ef899ed8bb9677df9c1.png_720x720q80.png_.webp',
+    image: require('../assets/categories/headphone.png'),
     name: 'Electronics',
   },
   {
-    url: 'https://img.drz.lazcdn.com/static/pk/p/619cb9366e65bcc2f7884e5c27b05cbc.jpg_720x720q80.jpg_.webp',
+    image: require('../assets/categories/beauty.png'),
     name: 'Beauty',
   },
   {
-    url: 'https://img.drz.lazcdn.com/static/pk/p/85e0c2c246e36099f11cddac1aead44f.jpg_720x720q80.jpg_.webp',
+    image: require('../assets/categories/women.png'),
     name: "Women's",
   },
   {
-    url: 'https://img.drz.lazcdn.com/g/kf/S3183a5a028be4539a9e391c3f902b625S.jpg_720x720q80.jpg_.webp',
+    image: require('../assets/categories/jewelry.png'),
     name: 'Jewelry',
   },
 ];
@@ -226,125 +226,145 @@ const notifications = [
     title: 'Password changed',
     body: 'Your password was successfully changed on 2024-08-20.',
     date: '2024-08-20',
+    isRead: true,
   },
   {
     id: 2,
     title: 'Login from a new device',
     body: "Your account was accessed from a new device. If this wasn't you, please secure your account.",
     date: '2024-08-19',
+    isRead: true,
   },
   {
     id: 3,
     title: 'Payment method updated',
     body: 'Your payment method was successfully updated.',
     date: '2024-08-18',
+    isRead: true,
   },
   {
     id: 4,
     title: 'New coupon code available',
     body: 'Use code SAVE20 to get 20% off on your next purchase. Valid till 2024-08-31.',
     date: '2024-08-17',
+    isRead: true,
   },
   {
     id: 5,
     title: 'Points earned from your purchase',
     body: 'You earned 150 points from your recent purchase. Keep shopping to earn more!',
     date: '2024-08-16',
+    isRead: false,
   },
   {
     id: 6,
     title: 'Free shipping offer expiring soon',
     body: "Your free shipping offer expires on 2024-08-22. Don't miss out!",
     date: '2024-08-15',
+    isRead: false,
   },
   {
     id: 7,
     title: 'Order #12345 has been shipped',
     body: 'Your order #12345 has been shipped and is on its way.',
     date: '2024-08-14',
+    isRead: false,
   },
   {
     id: 8,
     title: 'Order #12345 has been delivered',
     body: 'Your order #12345 has been delivered. Thank you for shopping with us!',
     date: '2024-08-13',
+    isRead: false,
   },
   {
     id: 9,
     title: 'Wishlist item back in stock',
     body: "An item in your wishlist is back in stock. Grab it before it's gone!",
     date: '2024-08-12',
+    isRead: false,
   },
   {
     id: 10,
     title: 'Exclusive offer just for you!',
     body: 'Enjoy an exclusive offer on your next purchase. Check the app for details.',
     date: '2024-08-11',
+    isRead: false,
   },
   {
     id: 11,
     title: 'Referral reward credited',
     body: 'Your referral reward has been credited to your account. Keep sharing!',
     date: '2024-08-10',
+    isRead: false,
   },
   {
     id: 12,
     title: 'New product launch',
     body: 'We’ve just launched a new product. Take a look and be the first to own it!',
     date: '2024-08-09',
+    isRead: false,
   },
   {
     id: 13,
     title: 'Order #12346 is ready for pickup',
     body: 'Your order #12346 is ready for pickup. Visit the store to collect.',
     date: '2024-08-08',
+    isRead: false,
   },
   {
     id: 14,
     title: 'Profile information updated',
     body: 'Your profile information was successfully updated.',
     date: '2024-08-07',
+    isRead: false,
   },
   {
     id: 15,
     title: 'Special discount on your favorite items',
     body: "Get a special discount on the items you've been eyeing. Limited time only!",
     date: '2024-08-06',
+    isRead: false,
   },
   {
     id: 16,
     title: 'Payment failed',
     body: 'Your recent payment attempt failed. Please update your payment details to complete the purchase.',
     date: '2024-08-05',
+    isRead: false,
   },
   {
     id: 17,
     title: 'Cart abandoned',
     body: 'You left items in your cart. They are still available, but not for long!',
     date: '2024-08-04',
+    isRead: false,
   },
   {
     id: 18,
     title: 'Seasonal sale starts now!',
     body: 'Our seasonal sale has begun. Enjoy huge discounts on your favorite items!',
     date: '2024-08-03',
+    isRead: false,
   },
   {
     id: 19,
     title: 'Order #12347 has been canceled',
     body: 'Your order #12347 has been canceled as per your request.',
     date: '2024-08-02',
+    isRead: false,
   },
   {
     id: 20,
     title: 'Points expiring soon',
     body: 'Some of your reward points are expiring soon. Redeem them before they’re gone!',
     date: '2024-08-01',
+    isRead: false,
   },
 ];
 
 export {
-  cartData,
+  products,
   sliderImages,
   categories,
   CATEGORIES,

@@ -30,9 +30,9 @@ function SigninScreen(props) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.background}>
-        <View style={styles.c1} />
-        <View style={[styles.pinkCircle, { bottom: '25%', left: '15%' }]} />
-        <View style={styles.pinkCircle} />
+        <View style={[styles.c1, { opacity: 0.5 }]} />
+        <View style={[styles.orangeCircle, { bottom: '25%', left: '5%', opacity: 0.5 }]} />
+        <View style={[styles.orangeCircle, { opacity: 0.4 }]} />
         <View style={styles.c2} />
       </View>
       <BlurView intensity={100} tint="light" style={styles.blurContainer}>
@@ -161,8 +161,8 @@ const styles = StyleSheet.create({
     marginBottom: '7%',
   },
   c1: {
-    width: width / 2,
-    height: width / 2,
+    width: width / 1.5,
+    height: width / 1.5,
     borderRadius: width / 2,
     backgroundColor: colors.lightBlue,
     alignSelf: 'flex-end',
@@ -171,14 +171,16 @@ const styles = StyleSheet.create({
     width: width / 1.2,
     height: width / 1.2,
     borderRadius: width / 2,
-    backgroundColor: colors.lightBlue,
+    backgroundColor: '#fee2e2',
+    opacity: 0.8,
+    marginBottom: 50,
     alignSelf: 'flex-end',
   },
-  pinkCircle: {
-    width: width / 2,
-    height: width / 2,
+  orangeCircle: {
+    width: width / 1.5,
+    height: width / 1.5,
     borderRadius: width / 2,
-    backgroundColor: colors.lightPink,
+    backgroundColor: '#fed7aa',
     position: 'absolute',
     right: 0,
     bottom: 0,

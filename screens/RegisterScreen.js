@@ -31,9 +31,9 @@ function RegisterScreen(props) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.background}>
-        <View style={styles.c1} />
-        <View style={styles.pinkCircle} />
-        <View style={styles.c2} />
+        <View style={[styles.c1, { opacity: 0.7 }]} />
+        <View style={[styles.pinkCircle, { opacity: 0.7 }]} />
+        <View style={[styles.c2, { opacity: 0.7 }]} />
       </View>
       <BlurView intensity={100} tint="light" style={styles.blurContainer}>
         <Typo size={26} style={styles.text}>
@@ -167,8 +167,8 @@ const styles = StyleSheet.create({
     margin: 2,
   },
   c1: {
-    width: width / 2,
-    height: width / 2,
+    width: width / 1.5,
+    height: width / 1.5,
     borderRadius: width / 2,
     backgroundColor: colors.lightBlue,
     alignSelf: 'flex-end',
@@ -183,8 +183,8 @@ const styles = StyleSheet.create({
     bottom: '25%',
   },
   pinkCircle: {
-    width: width / 2,
-    height: width / 2,
+    width: width / 1.5,
+    height: width / 1.5,
     borderRadius: width / 2,
     backgroundColor: colors.lightPink,
     position: 'absolute',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import colors from 'config/colors';
 import { View, Image, Dimensions, StyleSheet } from 'react-native';
 import Typo from './Typo';
@@ -26,11 +26,7 @@ function CartCard({ item }) {
           <Typo size={17} style={{ fontWeight: 'bold' }}>
             {item.name}
           </Typo>
-          <MaterialCommunityIcons
-            name="delete-empty-outline"
-            size={normalizeY(24)}
-            color={colors.primary}
-          />
+          <MaterialIcons name="delete-outline" size={normalizeY(24)} color={colors.primary} />
         </View>
         <Typo style={styles.catText}>{item.category}</Typo>
         <View style={styles.row}>
@@ -49,12 +45,12 @@ function CartCard({ item }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginBottom: normalizeY(15),
+    marginBottom: normalizeY(17),
     backgroundColor: colors.white,
     shadowColor: colors.black,
-    shadowOffset: { height: 10, width: 0 },
+    shadowOffset: { height: 8, width: 0 },
     shadowOpacity: 0.1,
-    shadowRadius: 3,
+    shadowRadius: 5,
     padding: normalizeY(15),
     borderRadius: normalizeY(12),
     gap: normalizeX(10),

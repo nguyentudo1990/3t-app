@@ -22,8 +22,20 @@ function CheckoutScreen({}) {
         <Typo size={18} style={{ fontWeight: '600', marginBottom: spacingY._15 }}>
           Shipping to
         </Typo>
-        <AddressCard selected={selectedAddress} setSelected={setSelectedAddress} title={'Home'} />
-        <AddressCard selected={selectedAddress} setSelected={setSelectedAddress} title={'Office'} />
+        <AddressCard
+          selected={selectedAddress}
+          setSelected={setSelectedAddress}
+          title="Home"
+          phone="(319) 555-0115"
+          address="482 W Dallas St undefined"
+        />
+        <AddressCard
+          selected={selectedAddress}
+          setSelected={setSelectedAddress}
+          title="Office"
+          phone="(207) 555-0119"
+          address="1749 Wheeler Ridge"
+        />
 
         <Typo size={18} style={{ fontWeight: '600' }}>
           Payment method
@@ -104,7 +116,7 @@ const MethodRow = ({ title, img, selected, setSelected }) => {
   );
 };
 
-const AddressCard = ({ title, selected, setSelected }) => {
+const AddressCard = ({ title, selected, setSelected, address, phone }) => {
   const isSelected = selected == title;
   return (
     <TouchableOpacity
@@ -119,10 +131,10 @@ const AddressCard = ({ title, selected, setSelected }) => {
           {title}
         </Typo>
         <Typo size={12} style={{ color: colors.gray }}>
-          {title == 'Home' ? '(319) 555-0115' : '(207) 555-0119'}
+          {phone}
         </Typo>
         <Typo size={12} style={{ color: colors.gray }}>
-          {title == 'Home' ? '482 W Dallas St undefined' : '1749 Wheeler Ridge'}
+          {address}
         </Typo>
       </View>
       <MaterialIcons name="mode-edit" size={20} color="black" />
@@ -158,9 +170,9 @@ const styles = StyleSheet.create({
   methodImgBg: {
     backgroundColor: colors.white,
     borderWidth: 1,
-    padding: spacingY._5,
-    borderRadius: radius._10,
-    borderColor: colors.lightGray,
+    padding: spacingY._7,
+    borderRadius: radius._30,
+    borderColor: colors.lighterGray,
   },
   methodImg: {
     height: normalizeY(30),
@@ -195,9 +207,9 @@ const styles = StyleSheet.create({
     borderRadius: radius._20,
     marginBottom: spacingY._20,
     shadowColor: colors.black,
-    shadowOffset: { height: 20, width: 0 },
+    shadowOffset: { height: 10, width: 0 },
     shadowOpacity: 0.1,
-    shadowRadius: 5,
+    shadowRadius: 7,
   },
   unSelectedCard: {
     backgroundColor: colors.lighterGray,

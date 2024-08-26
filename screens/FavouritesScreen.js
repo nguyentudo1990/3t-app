@@ -7,7 +7,7 @@ import React, { useCallback, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { cartData } from 'utils/data';
+import { products } from 'utils/data';
 
 function FavouritesScreen(props) {
   const [key, setKey] = useState(0);
@@ -23,7 +23,7 @@ function FavouritesScreen(props) {
         Favourites
       </Typo>
       <FlatList
-        data={cartData}
+        data={products}
         style={{ flex: 1 }}
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={styles.listContainer}
@@ -31,9 +31,10 @@ function FavouritesScreen(props) {
           return (
             <Animated.View
               key={`${key}-${index}`}
-              entering={FadeInDown.delay(index * 100)
-                .duration(500)
-                .damping(14)}>
+              entering={FadeInDown.delay(index * 140)
+                .duration(2000)
+                .damping(12)
+                .springify()}>
               <FavouriteCard item={item} />
             </Animated.View>
           );

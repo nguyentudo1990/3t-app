@@ -105,7 +105,11 @@ function ItemDetailsScreen({ route, navigation }) {
               +
             </Typo>
           </View>
-          <AppButton style={{ width: '60%', marginTop: 0 }} label={'Add to Cart'} />
+          <AppButton
+            style={{ width: '60%', marginTop: 0 }}
+            onPress={() => navigation.navigate('Cart')}
+            label={'Add to Cart'}
+          />
         </View>
       </View>
     </View>

@@ -40,17 +40,20 @@ function NotificationsScreen({ navigation }) {
             outputRange: [1, 1, 1, 0],
           });
 
-          const isEven = index % 2 == 0;
+          const isRead = item.isRead;
           return (
             <Animated.View
               style={[
                 styles.notiView,
                 {
-                  backgroundColor: isEven ? colors.light : colors.grayBG,
+                  backgroundColor: isRead ? colors.light : colors.grayBG,
                   marginBottom: SPACING,
                   padding: SPACING,
                   transform: [{ scale }],
                   opacity,
+                },
+                isRead && {
+                  borderColor: colors.primary,
                 },
               ]}>
               <View style={{ height: CARD_HEIGHT }} />
@@ -61,11 +64,11 @@ function NotificationsScreen({ navigation }) {
                     style={[
                       styles.dot,
                       {
-                        backgroundColor: isEven ? colors.primary : colors.lightGray,
+                        backgroundColor: isRead ? colors.primary : colors.lightGray,
                       },
                     ]}
                   />
-                  <Typo size={16} style={{ fontWeight: '600' }}>
+                  <Typo size={15} style={{ fontWeight: '600' }}>
                     {item.title}
                   </Typo>
                 </View>
@@ -99,15 +102,19 @@ const styles = StyleSheet.create({
   notiView: {
     flexDirection: 'row',
     borderRadius: radius._15,
+    borderColor: colors.lightGray,
+    borderWidth: 0.5,
     shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.14,
+    shadowRadius: 5,
   },
   dateTxt: {
     opacity: 0.8,
     color: colors.primary,
     alignSelf: 'flex-end',
     fontWeight: '500',
+    fontSize: normalizeY(13),
   },
   dot: {
     height: normalizeY(10),

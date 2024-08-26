@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, Animated, StyleSheet, Dimensions } from 'react-native';
+import { TouchableOpacity, Animated, StyleSheet, Dimensions, View } from 'react-native';
 import Typo from './Typo';
 import colors from 'config/colors';
 import { radius, spacingX, spacingY } from 'config/spacing';
@@ -39,7 +39,7 @@ function StartSelector({ selected, setSelected }) {
   });
 
   return (
-    <BlurView style={styles.container} tint="extra-light">
+    <View style={styles.container} tint="extra-light">
       <Animated.View
         style={[
           styles.selectedView,
@@ -58,7 +58,7 @@ function StartSelector({ selected, setSelected }) {
           Sign in
         </Typo>
       </TouchableOpacity>
-    </BlurView>
+    </View>
   );
 }
 
@@ -68,18 +68,22 @@ const styles = StyleSheet.create({
     width: containerWidth / 2 - spacingX._10,
     height: '100%',
     position: 'absolute',
-    borderRadius: 10,
+    borderRadius: radius._12,
   },
   container: {
     alignItems: 'center',
     flexDirection: 'row',
     borderRadius: radius._12,
-    overflow: 'hidden',
+    // overflow: 'hidden',
     backgroundColor: colors.lightprimary,
     alignSelf: 'center',
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: colors.white,
     width: '90%',
+    shadowColor: colors.black,
+    shadowOffset: { width: 0, height: 7 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
   },
   textContainer: {
     flex: 1,

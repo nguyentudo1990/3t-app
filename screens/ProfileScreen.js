@@ -8,13 +8,14 @@ import { radius, spacingX, spacingY } from 'config/spacing';
 import { BlurView } from 'expo-blur';
 import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import Animated, { FadeInRight } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 import { normalizeY } from 'utils/normalize';
 
 function ProfileScreen(props) {
   const [key, setKey] = useState(0);
   const Auth = useAuth();
 
+  // comment this if you don't want to animate everytime you open this screen
   useFocusEffect(
     useCallback(() => {
       setKey((prevKey) => prevKey + 1);
@@ -26,9 +27,10 @@ function ProfileScreen(props) {
       <TouchableOpacity onPress={onPress}>
         <Animated.View
           style={styles.row}
-          entering={FadeInRight.delay(index * 50)
-            .duration(500)
-            .damping(14)}
+          entering={FadeInDown.delay(index * 80)
+            .duration(800)
+            .damping(12)
+            .springify()}
           key={`${key}-${index}`}>
           <View
             style={{ backgroundColor: iconColor, padding: spacingY._10, borderRadius: radius._12 }}>
@@ -67,46 +69,49 @@ function ProfileScreen(props) {
           </Typo>
         </View>
       </View>
-      <View style={{ flex: 1 }} />
-      <View style={styles.bottomContainer}>
-        <Row
-          title={'Edit profile'}
-          iconColor={'#fbdbe6'}
-          icon={<Ionicons name="person" size={24} color={'#eb4b8b'} />}
-          index={0}
-        />
-        <Row
-          title={'My stats'}
-          iconColor={'#dedffd'}
-          icon={<Ionicons name="stats-chart" size={24} color={'#5d5be5'} />}
-          index={1}
-        />
-        <Row
-          title={'Settings'}
-          iconColor={'#ffe3ce'}
-          icon={<Ionicons name="settings" size={24} color={'#f97113'} />}
-          index={2}
-        />
-        <Row
-          title={'Invite a friend'}
-          iconColor={'#F5E8E4'} // '#E9F8F9' '#176B87'
-          icon={<Ionicons name="person-add" size={24} color={'#860A35'} />}
-          index={3}
-        />
-        <View style={styles.line} />
-        <Row
-          title={'Help'}
-          iconColor={'#d1d1d1'}
-          icon={<Ionicons name="chatbubble-ellipses" size={24} color={colors.black} />}
-          index={4}
-        />
-        <Row
-          title={'Log out'}
-          iconColor={'#d1d1d1'}
-          icon={<MaterialCommunityIcons name="logout" size={24} color={colors.black} />}
-          index={5}
-          onPress={() => Auth.setUser(null)}
-        />
+      <View style={{ flex: 1, gap: 15 }}>
+        <View style={styles.bottomContainer}>
+          <Row
+            title={'Edit profile'}
+            iconColor={'#fbdbe6'}
+            icon={<Ionicons name="person" size={24} color={'#eb4b8b'} />}
+            index={0}
+          />
+          {/* <View style={styles.line} /> */}
+          <Row
+            title={'My stats'}
+            iconColor={'#dedffd'}
+            icon={<Ionicons name="stats-chart" size={24} color={'#5d5be5'} />}
+            index={1}
+          />
+          <Row
+            title={'Settings'}
+            iconColor={'#ffe3ce'}
+            icon={<Ionicons name="settings" size={24} color={'#f97113'} />}
+            index={2}
+          />
+          <Row
+            title={'Invite a friend'}
+            iconColor={'#F5E8E4'} // '#E9F8F9' '#176B87'
+            icon={<Ionicons name="person-add" size={24} color={'#860A35'} />}
+            index={3}
+          />
+        </View>
+        <View style={[styles.bottomContainer, { marginBottom: '30%' }]}>
+          <Row
+            title={'Help'}
+            iconColor={'#d1d1d1'}
+            icon={<Ionicons name="chatbubble-ellipses" size={24} color={colors.black} />}
+            index={4}
+          />
+          <Row
+            title={'Log out'}
+            iconColor={'#d1d1d1'}
+            icon={<MaterialCommunityIcons name="logout" size={24} color={colors.black} />}
+            index={5}
+            onPress={() => Auth.setUser(null)}
+          />
+        </View>
       </View>
     </ScreenComponent>
   );
@@ -115,7 +120,7 @@ function ProfileScreen(props) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: spacingX._20,
-    backgroundColor: colors.lightPrimary,
+    // backgroundColor: colors.lightPrimary,
   },
 
   blurContainer: {
@@ -128,16 +133,16 @@ const styles = StyleSheet.create({
     borderRadius: radius._20,
   },
   topRow: {
-    paddingVertical: spacingY._15,
+    marginBottom: normalizeY(25),
     alignItems: 'center',
     gap: spacingX._10,
-    marginTop: '3%',
+    marginTop: '2%',
   },
   img: {
     height: normalizeY(110),
     width: normalizeY(110),
     borderRadius: normalizeY(60),
-    borderWidth: normalizeY(4),
+    borderWidth: normalizeY(3),
     borderColor: colors.primary,
   },
   name: {
@@ -151,21 +156,21 @@ const styles = StyleSheet.create({
     paddingRight: spacingX._5,
   },
   line: {
-    height: 0.5,
-    width: '80%',
-    backgroundColor: colors.gray,
+    height: 0.8,
+    width: '95%',
+    backgroundColor: 'rgba(0,0,0,0.1)',
     alignSelf: 'center',
-    marginVertical: spacingY._10,
+    // marginVertical: spacingY._10,
   },
   bottomContainer: {
     backgroundColor: colors.white,
     borderRadius: spacingY._20,
     shadowColor: colors.black,
     shadowOffset: { height: 0, width: 0 },
-    shadowOpacity: 0.2,
-    shadowRadius: 20,
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
     padding: spacingY._15,
-    marginBottom: '30%',
+    // marginBottom: '30%',
   },
 });
 

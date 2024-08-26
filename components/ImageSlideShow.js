@@ -16,7 +16,7 @@ function ImageSlideShow(props) {
   useEffect(() => {
     const interval = setInterval(() => {
       scrollToNextImage();
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [currentIndex]);
@@ -46,13 +46,7 @@ function ImageSlideShow(props) {
           setCurrentIndex(index);
         }}>
         {images.map((image, index) => (
-          <Image
-            key={index}
-            source={{
-              uri: image,
-            }}
-            style={styles.image}
-          />
+          <Image key={index} source={image} style={styles.image} />
         ))}
       </ScrollView>
       <View style={styles.indicatorContainer}>
@@ -77,13 +71,13 @@ const styles = StyleSheet.create({
   container: {
     height: height * 0.2,
     width: adjustedWidth,
-    borderRadius: radius._15,
+    borderRadius: radius._20,
     overflow: 'hidden',
     marginVertical: spacingY._15,
     alignSelf: 'center',
   },
   image: {
-    resizeMode: 'stretch',
+    resizeMode: 'cover',
     height: '100%',
     width: adjustedWidth,
   },

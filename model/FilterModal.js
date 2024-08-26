@@ -79,20 +79,26 @@ function FilterModal({ visible, setVisible }) {
           }}
         />
         <View activeOpacity={1} style={styles.container}>
-          <TouchableOpacity style={styles.crossIcon} onPress={() => setVisible(false)}>
-            <Entypo name="cross" size={24} color="black" />
-          </TouchableOpacity>
+          <View style={styles.filters}>
+            <Typo size={25} style={{ fontWeight: '700' }}>
+              Filters
+            </Typo>
+            <TouchableOpacity style={styles.crossIcon} onPress={() => setVisible(false)}>
+              <Entypo name="cross" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+
           <ScrollView
             contentContainerStyle={{ paddingBottom: '15%' }}
             showsVerticalScrollIndicator={false}>
             <Heading title={'Category'} index={1} />
             <Animated.ScrollView
               horizontal
-              entering={FadeInDown.delay(1 * 50)
-                .duration(600)
+              entering={FadeInDown.delay(1 * 130)
+                .duration(300)
                 .springify()
-                .damping(5)
-                .stiffness(50)}>
+                .damping(12)
+                .stiffness(80)}>
               <FlatList
                 scrollEnabled={false}
                 data={CATEGORIES}
@@ -119,11 +125,11 @@ function FilterModal({ visible, setVisible }) {
             <Heading title={'Style'} index={2} />
             <Animated.ScrollView
               horizontal
-              entering={FadeInDown.delay(2 * 50)
-                .duration(600)
+              entering={FadeInDown.delay(2 * 130)
+                .duration(300)
                 .springify()
-                .damping(5)
-                .stiffness(50)}>
+                .damping(12)
+                .stiffness(80)}>
               <FlatList
                 scrollEnabled={false}
                 data={STYLES}
@@ -150,11 +156,11 @@ function FilterModal({ visible, setVisible }) {
             <Heading title={'Brand'} index={3} />
             <Animated.ScrollView
               horizontal
-              entering={FadeInDown.delay(3 * 50)
-                .duration(600)
+              entering={FadeInDown.delay(3 * 130)
+                .duration(300)
                 .springify()
-                .damping(5)
-                .stiffness(50)}>
+                .damping(12)
+                .stiffness(80)}>
               <FlatList
                 scrollEnabled={false}
                 data={BRANDS}
@@ -181,11 +187,11 @@ function FilterModal({ visible, setVisible }) {
             <Heading title={'Color'} index={4} />
             <Animated.ScrollView
               horizontal
-              entering={FadeInDown.delay(4 * 50)
-                .duration(600)
+              entering={FadeInDown.delay(4 * 130)
+                .duration(300)
                 .springify()
-                .damping(5)
-                .stiffness(50)}>
+                .damping(12)
+                .stiffness(80)}>
               <FlatList
                 scrollEnabled={false}
                 data={COLORS}
@@ -221,11 +227,11 @@ function FilterModal({ visible, setVisible }) {
             <Heading title={'Size'} index={5} />
             <Animated.ScrollView
               horizontal
-              entering={FadeInDown.delay(5 * 50)
-                .duration(600)
+              entering={FadeInDown.delay(5 * 130)
+                .duration(300)
                 .springify()
-                .damping(5)
-                .stiffness(50)}>
+                .damping(12)
+                .stiffness(80)}>
               <FlatList
                 scrollEnabled={false}
                 data={SIZES}
@@ -269,10 +275,19 @@ function FilterModal({ visible, setVisible }) {
                 setHigh(parseInt(high));
               }}
             />
-            <View style={styles.resultsView}>
-              <Typo size={12} style={{ color: colors.white }}>
-                Show 32 Results
-              </Typo>
+            <View style={styles.footer}>
+              <TouchableOpacity onPress={() => setVisible(false)} style={[styles.footerButton]}>
+                <Typo size={13} style={{ color: colors.white, fontWeight: '600' }}>
+                  Show 32 Results
+                </Typo>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setVisible(false)}
+                style={[styles.footerButton, { backgroundColor: colors.lighterGray }]}>
+                <Typo size={13} style={{ color: colors.black, fontWeight: '600' }}>
+                  Reset
+                </Typo>
+              </TouchableOpacity>
             </View>
           </ScrollView>
         </View>
@@ -284,15 +299,16 @@ function FilterModal({ visible, setVisible }) {
 const Heading = ({ title, index }) => {
   return (
     <Animated.View
-      entering={FadeInDown.delay(index * 50)
-        .duration(600)
+      style={{ marginBottom: 11 }}
+      entering={FadeInDown.delay(index * 130)
+        .duration(300)
         .springify()
-        .damping(5)
-        .stiffness(50)}>
+        .damping(12)
+        .stiffness(80)}>
       <Typo size={16} style={styles.heading}>
         {title}
       </Typo>
-      <View style={styles.line} />
+      {/* <View style={styles.line} /> */}
     </Animated.View>
   );
 };
@@ -308,16 +324,13 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontWeight: '700',
-    marginTop: spacingY._15,
+    marginTop: spacingY._20,
   },
   crossIcon: {
     backgroundColor: colors.lighterGray,
-    alignSelf: 'flex-end',
     borderRadius: radius._20,
     padding: spacingY._5,
     marginTop: spacingY._10,
-    marginBottom: spacingY._5,
-    marginEnd: -spacingX._10,
   },
   line: {
     height: normalizeY(1),
@@ -335,17 +348,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderWidth: 1,
     padding: spacingY._5,
+    paddingHorizontal: spacingY._7,
     borderRadius: spacingY._20,
     gap: spacingX._5,
     borderColor: colors.lightGray,
   },
-  resultsView: {
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 10,
+  },
+  footerButton: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: normalizeY(50),
     backgroundColor: colors.primary,
-    padding: spacingY._15,
-    paddingVertical: spacingY._7,
     marginTop: spacingY._10,
-    borderRadius: radius._20,
-    alignSelf: 'flex-start',
+    borderRadius: radius._15,
+    borderCurve: 'continuous',
+  },
+  filters: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    marginBottom: spacingY._5,
   },
 });
 

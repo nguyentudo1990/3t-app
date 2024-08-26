@@ -8,7 +8,7 @@ import { normalizeY } from 'utils/normalize';
 import { useNavigation } from '@react-navigation/native';
 const { width, height } = Dimensions.get('screen');
 
-function HomeCard({ item }) {
+function ProductCard({ item }) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -46,14 +46,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   heartBg: {
-    height: normalizeY(30),
-    width: normalizeY(30),
+    height: normalizeY(32),
+    width: normalizeY(32),
     backgroundColor: colors.primary,
     position: 'absolute',
     right: 0,
     top: 0,
     zIndex: 1,
-    borderBottomLeftRadius: radius._6,
+    borderBottomLeftRadius: radius._10,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black,
   },
 });
-export default HomeCard;
+export default ProductCard;

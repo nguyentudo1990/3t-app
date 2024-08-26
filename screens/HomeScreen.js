@@ -1,7 +1,8 @@
 import { Entypo, Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
-import HomeCard from 'components/HomeCard';
+import CategoryItem from 'components/CategoryItem';
 import ImageSlideShow from 'components/ImageSlideShow';
+import ProductCard from 'components/ProductCard';
 import ScreenComponent from 'components/ScreenComponent';
 import SearchBar from 'components/SearchBar';
 import Typo from 'components/Typo';
@@ -11,29 +12,32 @@ import FilterModal from 'model/FilterModal';
 import React, { useCallback, useState } from 'react';
 import { View, StyleSheet, FlatList, ScrollView, Image, TouchableOpacity } from 'react-native';
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
-import { cartData, categories } from 'utils/data';
+import { products, categories } from 'utils/data';
 import { normalizeX, normalizeY } from 'utils/normalize';
 
 function HomeScreen({ navigation }) {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [selected, setSelected] = useState('All');
-  const [data, setData] = useState(cartData);
+  const [data, setData] = useState(products);
   const [key, setKey] = useState(0);
 
-  useFocusEffect(
-    useCallback(() => {
-      setKey((prevKey) => prevKey + 1);
-    }, [])
-  );
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     setKey((prevKey) => prevKey + 1);
+  //   }, [])
+  // );
 
   const handleFilter = (category) => {
     setSelected(category);
-    if (category === 'All') {
-      setData(cartData);
-    } else {
-      const filteredData = cartData.filter((item) => item.category === category);
-      setData(filteredData);
-    }
+    setData([]);
+    setTimeout(() => {
+      if (category === 'All') {
+        setData(products);
+      } else {
+        const filteredData = products.filter((item) => item.category === category);
+        setData(filteredData);
+      }
+    }, 50);
   };
   return (
     <ScreenComponent style={styles.container}>
@@ -63,27 +67,14 @@ function HomeScreen({ navigation }) {
           renderItem={({ item, index }) => {
             const isSelected = selected == item.name;
             return (
-              <Animated.View
-                key={`${key}-${index}`}
-                style={styles.catCircle}
-                entering={FadeInRight.delay(index * 100)
-                  .duration(500)
-                  .damping(14)}>
-                <TouchableOpacity onPress={() => handleFilter(item.name)}>
-                  <Image
-                    source={{ uri: item.url }}
-                    style={[
-                      styles.catImg,
-                      { borderColor: isSelected ? colors.primary : colors.white },
-                    ]}
-                  />
-                  <Typo
-                    size={12}
-                    style={[styles.catName, { color: isSelected ? colors.primary : colors.black }]}>
-                    {item.name}
-                  </Typo>
-                </TouchableOpacity>
-              </Animated.View>
+              <CategoryItem
+                item={item}
+                onPress={handleFilter}
+                isSelected={isSelected}
+                index={index}
+                key={index}
+                keyValue={key}
+              />
             );
           }}
         />
@@ -93,7 +84,8 @@ function HomeScreen({ navigation }) {
           </Typo>
           <Typo style={{ color: colors.gray }}>See all</Typo>
         </View>
-        <ScrollView horizontal contentContainerStyle={{ flexGrow: 1 }}>
+        {/* <ScrollView horizontal contentContainerStyle={{ flexGrow: 1 }}> */}
+        {data.length > 0 && (
           <FlatList
             scrollEnabled={false}
             numColumns={2}
@@ -102,6 +94,7 @@ function HomeScreen({ navigation }) {
             contentContainerStyle={{
               gap: spacingX._20,
               paddingHorizontal: spacingX._20,
+              paddingTop: spacingY._15,
             }}
             columnWrapperStyle={{ gap: spacingX._20 }}
             renderItem={({ item, index }) => {
@@ -109,14 +102,17 @@ function HomeScreen({ navigation }) {
                 <Animated.View
                   key={`${key}-${index}`}
                   entering={FadeInDown.delay(index * 100)
-                    .duration(500)
-                    .damping(14)}>
-                  <HomeCard item={item} />
+                    .duration(600)
+                    .damping(13)
+                    .springify()}>
+                  <ProductCard item={item} />
                 </Animated.View>
               );
             }}
           />
-        </ScrollView>
+        )}
+
+        {/* </ScrollView> */}
       </ScrollView>
       <FilterModal visible={filterModalVisible} setVisible={setFilterModalVisible} />
     </ScreenComponent>
@@ -139,18 +135,14 @@ const styles = StyleSheet.create({
     borderRadius: radius._20,
   },
   catContainer: {
-    paddingHorizontal: spacingX._15,
+    paddingHorizontal: spacingX._10,
     marginTop: spacingY._10,
   },
-  catCircle: {
-    alignItems: 'center',
-    width: normalizeX(75),
-  },
   catImg: {
-    height: normalizeY(60),
-    width: normalizeY(60),
+    height: normalizeY(50),
+    width: normalizeY(50),
     borderRadius: radius._30,
-    backgroundColor: 'pink',
+    backgroundColor: colors.lighterGray,
     borderWidth: normalizeY(2),
     marginBottom: spacingY._5,
   },
@@ -162,7 +154,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: spacingY._15,
     marginTop: spacingY._20,
     marginHorizontal: spacingX._15,
   },

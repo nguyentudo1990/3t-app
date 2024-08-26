@@ -16,7 +16,7 @@ import {
   Platform,
 } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { cartData } from 'utils/data';
+import { products } from 'utils/data';
 import { normalizeX, normalizeY } from 'utils/normalize';
 
 function CartScreen({ navigation }) {
@@ -24,16 +24,17 @@ function CartScreen({ navigation }) {
     <ScreenComponent style={styles.container}>
       <Header label={'My Cart'} />
       <FlatList
-        data={cartData}
+        data={products}
         style={{ flex: 1 }}
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={styles.listContainer}
         renderItem={({ item, index }) => {
           return (
             <Animated.View
-              entering={FadeInDown.delay(index * 100)
-                .duration(500)
-                .damping(14)}>
+              entering={FadeInDown.delay(index * 140)
+                .duration(2000)
+                .damping(12)
+                .springify()}>
               <CartCard item={item} />
             </Animated.View>
           );
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     paddingHorizontal: spacingX._20,
-    paddingTop: spacingY._20,
+    paddingTop: spacingY._15,
   },
   discountRow: {
     height: height.input,

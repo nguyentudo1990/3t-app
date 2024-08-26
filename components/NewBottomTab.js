@@ -33,11 +33,11 @@ const NewBottomTab = ({ state, navigation }) => {
       routeName == 'Home'
         ? 0
         : routeName == 'Cart'
-          ? width * 0.23
+          ? width * 0.225
           : routeName == 'Favourites'
             ? width * 0.44
             : routeName == 'Profile'
-              ? width * 0.665
+              ? width * 0.66
               : 0;
     setStartRange(endRange);
     setEndRange(range);
@@ -81,7 +81,7 @@ const NewBottomTab = ({ state, navigation }) => {
       <View
         style={{
           position: 'absolute',
-          bottom: spacingY._15,
+          bottom: normalizeY(20),
           right: 0,
           left: 0,
           marginHorizontal: '16.3%',
@@ -124,14 +124,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     bottom: 0,
-    height: 70,
+    height: 75,
     backgroundColor: colors.white,
     position: 'absolute',
     justifyContent: 'space-evenly',
     shadowOffset: { height: 0, width: 0 },
     shadowOpacity: 0.1,
     elevation: 10,
-    paddingBottom: spacingY._10,
+    paddingBottom: spacingY._15,
   },
   tabContent: {
     justifyContent: 'space-around',
@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
   },
   animationBar: {
     backgroundColor: colors.primary,
-    width: normalizeX(5),
-    height: normalizeY(5),
+    width: normalizeX(6),
+    height: normalizeY(6),
     borderRadius: normalizeY(8),
   },
 });
