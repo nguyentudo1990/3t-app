@@ -5,7 +5,7 @@ import { useState } from 'react';
 import StartSelector from 'components/StartSelector';
 import { radius, spacingY } from 'config/spacing';
 import Typo from 'components/Typo';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 const { width, height } = Dimensions.get('screen');
 let paddingTop = Platform.OS === 'ios' ? height * 0.07 : spacingY._10;
 
@@ -15,14 +15,19 @@ function StartScreen(props) {
     <SafeAreaView style={styles.container}>
       <View style={styles.background}>
         <View style={[styles.c1, { opacity: 0.5 }]} />
-        <View style={[styles.orangeCircle, { bottom: '25%', left: '5%', opacity: 0.5 }]} />
+        <View
+          style={[
+            styles.orangeCircle,
+            { bottom: '40%', left: '5%', opacity: 0.5, width: width / 1.1 },
+          ]}
+        />
         <View style={[styles.orangeCircle, { opacity: 0.4 }]} />
         <View style={styles.c2} />
       </View>
       <BlurView intensity={100} tint="light" style={styles.blurContainer}>
-        <View style={styles.imgContainer}>
+        <Animated.View entering={FadeIn.duration(700)} style={styles.imgContainer}>
           <Image source={require('../assets/startImage.png')} style={styles.img} />
-        </View>
+        </Animated.View>
         <View>
           <Animated.View entering={FadeInDown.delay(100).duration(500).springify().damping(12)}>
             <Typo size={26} style={styles.text}>
@@ -89,7 +94,7 @@ const styles = StyleSheet.create({
     margin: 2,
   },
   c1: {
-    width: width / 1.5,
+    width: width,
     height: width / 1.5,
     borderRadius: width / 2,
     backgroundColor: colors.lightBlue,

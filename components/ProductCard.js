@@ -26,10 +26,10 @@ function ProductCard({ item }) {
           {item.price}
         </Typo>
         <View style={{ flex: 1 }} />
-        <View style={styles.dot} />
-        <View style={[styles.dot, { backgroundColor: colors.primary }]} />
-        <View style={[styles.dot, { backgroundColor: colors.gray }]} />
-        <View style={[styles.dot, { backgroundColor: colors.red }]} />
+        <View style={[styles.dot, { backgroundColor: colors.dot1 }]} />
+        <View style={[styles.dot, { backgroundColor: colors.dot2 }]} />
+        <View style={[styles.dot, { backgroundColor: colors.dot3 }]} />
+        <View style={[styles.dot, { backgroundColor: colors.dot4 }]} />
       </View>
     </TouchableOpacity>
   );

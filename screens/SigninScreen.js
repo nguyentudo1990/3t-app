@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
   inputView: {
     backgroundColor: colors.white,
     borderRadius: radius._15,
+    borderCurve: 'continuous',
     marginTop: spacingY._15,
     shadowColor: colors.lightBlue,
     shadowOffset: { height: 0, width: 0 },

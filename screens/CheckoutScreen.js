@@ -27,7 +27,7 @@ function CheckoutScreen({}) {
           setSelected={setSelectedAddress}
           title="Home"
           phone="(319) 555-0115"
-          address="482 W Dallas St undefined"
+          address="482 W Dallas St Wallace"
         />
         <AddressCard
           selected={selectedAddress}

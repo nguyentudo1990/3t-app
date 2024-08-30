@@ -14,9 +14,9 @@ const { height } = Dimensions.get('screen');
 function ItemDetailsScreen({ route, navigation }) {
   const iconSize = 18;
   const item = route.params;
-  const [selectedColor, setSelectedColor] = useState(colors.maroon);
+  const [selectedColor, setSelectedColor] = useState(colors.dot1);
   const [selected, setSelected] = useState('Description');
-  const allColors = [colors.maroon, colors.black, colors.navy, colors.brown, colors.gray];
+  const allColors = [colors.dot1, colors.dot2, colors.dot3, colors.dot4, colors.gray];
   return (
     <View style={styles.container}>
       <ItemImageSlider images={Array(5).fill(item.url)} />
@@ -43,7 +43,7 @@ function ItemDetailsScreen({ route, navigation }) {
             {item.price}
           </Typo>
           <Typo size={16} style={styles.seller}>
-            Seller: Tariqul isalm
+            Seller: Syed Noman
           </Typo>
           <View style={styles.ratingRow}>
             <View style={styles.ratingView}>

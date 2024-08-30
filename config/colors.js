@@ -18,4 +18,8 @@ export default {
   brown: '#8c491d',
   lightBlue: '#e3ebf8',
   lightPink: '#e8d4e5',
+  dot1: '#404040',
+  dot2: '#f87171',
+  dot3: '#fb923c',
+  dot4: '#0891b2',
 };
