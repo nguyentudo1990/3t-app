@@ -8,7 +8,6 @@ const CustomBottomTab = ({ state, navigation }) => {
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
   const tabs = [
-    { name: 'Menu', iconSet: Ionicons, iconName: 'grid-outline' },
     { name: 'Favouties', iconSet: FontAwesome5, iconName: 'heart' },
     { name: 'Home', iconSet: AntDesign, iconName: 'home' },
     { name: 'Cart', iconSet: Feather, iconName: 'shopping-cart' },

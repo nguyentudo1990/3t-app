@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import { ThemeProvider } from '@shopify/restyle';
+// import { ThemeProvider } from '@shopify/restyle';
 import { theme } from 'theme';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -14,12 +14,12 @@ export default function App() {
   const [user, setUser] = useState(null);
   return (
     <AuthContext.Provider value={{ user, setUser }}>
-      <ThemeProvider theme={theme}>
-        <StatusBar barStyle={'dark-content'} />
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <NavigationContainer>{user ? <AppNavigator /> : <AuthNavigator />}</NavigationContainer>
-        </GestureHandlerRootView>
-      </ThemeProvider>
+      {/* <ThemeProvider theme={theme}> */}
+      <StatusBar barStyle={'dark-content'} />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>{user ? <AppNavigator /> : <AuthNavigator />}</NavigationContainer>
+      </GestureHandlerRootView>
+      {/* </ThemeProvider> */}
     </AuthContext.Provider>
   );
 }
