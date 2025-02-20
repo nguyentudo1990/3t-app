@@ -15,7 +15,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {/* <ThemeProvider theme={theme}> */}
-      <StatusBar barStyle={'dark-content'} />
+      <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} />
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>{user ? <AppNavigator /> : <AuthNavigator />}</NavigationContainer>
       </GestureHandlerRootView>

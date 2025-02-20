@@ -2,4 +2,4 @@ Follow these steps to successfully run this project:
 - run "npm install"
 - run "npm run start"
 
-Enjoy 😉
+Happy coding 😉
