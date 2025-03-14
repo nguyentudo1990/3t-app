@@ -22,7 +22,7 @@ import { normalizeX, normalizeY } from 'utils/normalize';
 function CartScreen({ navigation }) {
   return (
     <ScreenComponent style={styles.container}>
-      <Header label={'My Cart'} />
+      <Header label={'Giỏ hàng'} />
       <FlatList
         data={products}
         style={{ flex: 1 }}
@@ -48,14 +48,14 @@ function CartScreen({ navigation }) {
           borderTopLeftRadius: radius._20,
         }}>
         <View style={styles.checkoutContainer}>
-          <View style={styles.discountRow}>
+          {/* <View style={styles.discountRow}>
             <TextInput style={styles.input} placeholder="Enter Discount Code" />
             <Text style={styles.applyText}>Apply</Text>
-          </View>
-          <Row title={'Subtotal'} price={'$245.00'} />
+          </View> */}
+          <Row title={'Tạm tính'} price={'$245.00'} />
           <View style={styles.separator} />
-          <Row title={'Total'} price={'$245.00'} />
-          <AppButton label={'Checkout'} onPress={() => navigation.navigate('Checkout')} />
+          <Row title={'Tổng tiền'} price={'$245.00'} />
+          <AppButton label={'Tiếp tục'} onPress={() => navigation.navigate('Checkout')} />
         </View>
       </KeyboardAvoidingView>
       {/* <View style={{ height: '12%', backgroundColor: colors.white }} /> */}

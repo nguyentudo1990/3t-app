@@ -62,50 +62,50 @@ function ProfileScreen(props) {
         />
         <View style={{ gap: spacingY._7, marginTop: spacingY._5, alignItems: 'center' }}>
           <Typo size={22} style={styles.name}>
-            Jack Frost
+            Huy Huỳnh
           </Typo>
-          <Typo size={16} style={{ color: colors.gray, fontWeight: '500' }}>
+          {/* <Typo size={16} style={{ color: colors.gray, fontWeight: '500' }}>
             jackfrost@gmail.com
-          </Typo>
+          </Typo> */}
         </View>
       </View>
       <View style={{ flex: 1, gap: 15 }}>
         <View style={styles.bottomContainer}>
           <Row
-            title={'Edit profile'}
+            title={'Chỉnh sửa thông tin'}
             iconColor={'#fbdbe6'}
             icon={<Ionicons name="person" size={24} color={'#eb4b8b'} />}
             index={0}
           />
           {/* <View style={styles.line} /> */}
           <Row
-            title={'My stats'}
+            title={'Trạng trái'}
             iconColor={'#dedffd'}
             icon={<Ionicons name="stats-chart" size={24} color={'#5d5be5'} />}
             index={1}
           />
           <Row
-            title={'Settings'}
+            title={'Cài đặt'}
             iconColor={'#ffe3ce'}
             icon={<Ionicons name="settings" size={24} color={'#f97113'} />}
             index={2}
           />
-          <Row
+          {/* <Row
             title={'Invite a friend'}
             iconColor={'#F5E8E4'} // '#E9F8F9' '#176B87'
             icon={<Ionicons name="person-add" size={24} color={'#860A35'} />}
             index={3}
-          />
+          /> */}
         </View>
         <View style={[styles.bottomContainer, { marginBottom: '30%' }]}>
           <Row
-            title={'Help'}
+            title={'Điều khoản'}
             iconColor={'#d1d1d1'}
             icon={<Ionicons name="chatbubble-ellipses" size={24} color={colors.black} />}
             index={4}
           />
           <Row
-            title={'Log out'}
+            title={'Đăng xuất'}
             iconColor={'#d1d1d1'}
             icon={<MaterialCommunityIcons name="logout" size={24} color={colors.black} />}
             index={5}

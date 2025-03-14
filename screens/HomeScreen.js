@@ -31,7 +31,7 @@ function HomeScreen({ navigation }) {
     setSelected(category);
     setData([]);
     setTimeout(() => {
-      if (category === 'All') {
+      if (category === 'Tất cả') {
         setData(products);
       } else {
         const filteredData = products.filter((item) => item.category === category);
@@ -80,9 +80,9 @@ function HomeScreen({ navigation }) {
         />
         <View style={styles.headingContainer}>
           <Typo size={18} style={{ fontWeight: '600' }}>
-            Special For You
+            Dành Cho Bạn
           </Typo>
-          <Typo style={{ color: colors.gray }}>See all</Typo>
+          <Typo style={{ color: colors.gray }}>Xem thêm</Typo>
         </View>
         {/* <ScrollView horizontal contentContainerStyle={{ flexGrow: 1 }}> */}
         {data.length > 0 && (

@@ -24,7 +24,7 @@ const NewBottomTab = ({ state, navigation }) => {
   const tabs = [
     { name: 'Home', iconSet: AntDesign, iconName: 'home' },
     { name: 'Cart', iconSet: Feather, iconName: 'shopping-cart' },
-    { name: 'Favouties', iconSet: FontAwesome5, iconName: 'heart' },
+    { name: 'History', iconSet: FontAwesome5, iconName: 'history' },
     { name: 'Profile', iconSet: Ionicons, iconName: 'person-outline' },
   ];
 
@@ -34,7 +34,7 @@ const NewBottomTab = ({ state, navigation }) => {
         ? 0
         : routeName == 'Cart'
           ? width * 0.225
-          : routeName == 'Favourites'
+          : routeName == 'History'
             ? width * 0.44
             : routeName == 'Profile'
               ? width * 0.66

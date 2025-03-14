@@ -57,7 +57,7 @@ function DetailsSelector({ selected, setSelected }) {
             fontWeight: '500',
             color: selected == 'Description' ? colors.white : colors.black,
           }}>
-          Description
+          Miêu tả
         </Typo>
       </TouchableOpacity>
       <TouchableOpacity style={styles.textContainer} onPress={() => handleSelect('Specifications')}>
@@ -67,7 +67,7 @@ function DetailsSelector({ selected, setSelected }) {
             fontWeight: '500',
             color: selected == 'Specifications' ? colors.white : colors.black,
           }}>
-          Specifications
+            Thông số
         </Typo>
       </TouchableOpacity>
       <TouchableOpacity style={styles.textContainer} onPress={() => handleSelect('Reviews')}>
@@ -77,7 +77,7 @@ function DetailsSelector({ selected, setSelected }) {
             fontWeight: '500',
             color: selected == 'Reviews' ? colors.white : colors.black,
           }}>
-          Reviews
+          Đánh giá
         </Typo>
       </TouchableOpacity>
     </View>

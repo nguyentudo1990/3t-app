@@ -8,10 +8,10 @@ function SearchBar({ onPress }) {
   return (
     <View style={styles.searchbar}>
       <Feather name="search" size={24} color="black" />
-      <TextInput placeholder="Search..." style={styles.input} />
-      <TouchableOpacity onPress={onPress}>
+      <TextInput placeholder="Tìm kiếm..." style={styles.input} />
+      {/* <TouchableOpacity onPress={onPress}>
         <Octicons name="filter" size={20} color="black" />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    borderRightWidth: 1.2,
+    // borderRightWidth: 1.2,
     paddingRight: spacingX._10,
   },
 });

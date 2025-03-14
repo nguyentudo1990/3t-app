@@ -42,9 +42,9 @@ function ItemDetailsScreen({ route, navigation }) {
           <Typo size={20} style={styles.price}>
             {item.price}
           </Typo>
-          <Typo size={16} style={styles.seller}>
+          {/* <Typo size={16} style={styles.seller}>
             Seller: Syed Noman
-          </Typo>
+          </Typo> */}
           <View style={styles.ratingRow}>
             <View style={styles.ratingView}>
               <AntDesign name="star" size={12} color={colors.white} />
@@ -52,10 +52,10 @@ function ItemDetailsScreen({ route, navigation }) {
                 4.8
               </Typo>
             </View>
-            <Typo style={{ color: colors.gray }}> (320 Review)</Typo>
+            <Typo style={{ color: colors.gray }}> (320 Đánh giá)</Typo>
           </View>
           <Typo size={18} style={styles.colorTxt}>
-            Color
+            Chọn màu sắc
           </Typo>
           <View style={{ flexDirection: 'row', gap: spacingX._5 }}>
             {allColors.map((color, index) => (
@@ -73,23 +73,13 @@ function ItemDetailsScreen({ route, navigation }) {
           <DetailsSelector selected={selected} setSelected={setSelected} />
           {selected == 'Description' ? (
             <Typo style={{ color: colors.gray }}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown
-              printer took a galley of type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged. It was popularised in the 1960s with the release of
-              Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              Nội dung chi tiết của sản phẩm: Đây là sản phẩm được phân phối và cung cấp tại công ty 3T, 
+              chất lượng uy tín hàng đầu Việt Nam, Rất vui khi nhận được sự hài lòng từ bạn!
             </Typo>
           ) : (
             <Typo style={{ color: colors.gray }}>
-              The art of communication has evolved over centuries, yet the essence of conveying
-              ideas remains timeless. Throughout history, language has served as a vessel for
-              knowledge, culture, and expression. From the ancient scrolls of the scholars to the
-              printed manuscripts of the Renaissance, the written word has been a cornerstone of
-              human civilization. In the modern era, despite the advent of digital media, the
-              fundamental principles of writing have endured. Whether through the pages of a
-              well-worn book or the pixels on a screen, the power of words
+              Nội dung chi tiết của sản phẩm: Đây là sản phẩm được phân phối và cung cấp tại công ty 3T, 
+              chất lượng uy tín hàng đầu Việt Nam, Rất vui khi nhận được sự hài lòng từ bạn!
             </Typo>
           )}
         </ScrollView>
@@ -108,7 +98,7 @@ function ItemDetailsScreen({ route, navigation }) {
           <AppButton
             style={{ width: '60%', marginTop: 0 }}
             onPress={() => navigation.navigate('Cart')}
-            label={'Add to Cart'}
+            label={'Thêm vào giỏ'}
           />
         </View>
       </View>

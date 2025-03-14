@@ -50,12 +50,12 @@ function StartSelector({ selected, setSelected }) {
       />
       <TouchableOpacity style={styles.textContainer} onPress={() => handleSelect('Register')}>
         <Typo size={16} numberOfLines={1} adjustsFontSizeToFit style={{ fontWeight: '500' }}>
-          Register
+          Đăng ký
         </Typo>
       </TouchableOpacity>
       <TouchableOpacity style={styles.textContainer} onPress={() => handleSelect('Sign in')}>
         <Typo size={16} numberOfLines={1} adjustsFontSizeToFit style={{ fontWeight: '500' }}>
-          Sign in
+          Đăng nhập
         </Typo>
       </TouchableOpacity>
     </View>

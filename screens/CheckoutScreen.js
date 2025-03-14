@@ -14,30 +14,30 @@ function CheckoutScreen({}) {
   const [selectedAddress, setSelectedAddress] = useState('Home');
   return (
     <ScreenComponent style={styles.container}>
-      <Header label={'Checkout'} />
+      <Header label={'Đặt hàng'} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{ flex: 1, padding: spacingX._20 }}
         contentContainerStyle={{ paddingBottom: '10%' }}>
         <Typo size={18} style={{ fontWeight: '600', marginBottom: spacingY._15 }}>
-          Shipping to
+          Giao tới
         </Typo>
         <AddressCard
           selected={selectedAddress}
           setSelected={setSelectedAddress}
-          title="Home"
+          title="Nhà"
           phone="(319) 555-0115"
-          address="482 W Dallas St Wallace"
+          address="482 Trần Quang Diệu, Quận 3, TPHCM"
         />
         <AddressCard
           selected={selectedAddress}
           setSelected={setSelectedAddress}
-          title="Office"
+          title="Công ty"
           phone="(207) 555-0119"
-          address="1749 Wheeler Ridge"
+          address="301 Nguyễn Trãi, Quận 1, TPHCM"
         />
 
-        <Typo size={18} style={{ fontWeight: '600' }}>
+        {/* <Typo size={18} style={{ fontWeight: '600' }}>
           Payment method
         </Typo>
         <MethodRow
@@ -63,16 +63,16 @@ function CheckoutScreen({}) {
           selected={selectedMethod}
           setSelected={setSelectedMethod}
           img={require('../assets/apple.png')}
-        />
+        /> */}
       </ScrollView>
 
       <View style={styles.checkoutContainer}>
-        <Row title={'Shipping fee'} price={'$30'} />
+        {/* <Row title={'Shipping fee'} price={'$30'} /> */}
         <View style={styles.separator} />
-        <Row title={'Subtotal'} price={'$245.00'} />
+        <Row title={'Tạm tính'} price={'$245.00'} />
         <View style={styles.separator} />
-        <Row title={'Total'} price={'$245.00'} />
-        <AppButton label={'Payment'} />
+        <Row title={'Tạm tính'} price={'$245.00'} />
+        <AppButton label={'Đặt hàng'} />
       </View>
     </ScreenComponent>
   );

@@ -31,17 +31,16 @@ function StartScreen(props) {
         <View>
           <Animated.View entering={FadeInDown.delay(100).duration(500).springify().damping(12)}>
             <Typo size={26} style={styles.text}>
-              Discover Your
+              Chào mừng bạn đến ứng dụng
             </Typo>
             <Typo size={26} style={styles.text}>
-              Best Products Here
+              Những sản phẩm tốt nhất chờ đón bạn!
             </Typo>
           </Animated.View>
           <Animated.View entering={FadeInDown.delay(200).duration(500).springify().damping(12)}>
             <Typo style={[styles.body, { marginTop: '5%' }]}>
-              Explore all the most exiting best products
+              Chúng tôi chuyên cung cấp những sản phẩm tốt nhất đến tay người tiêu dùng.
             </Typo>
-            <Typo style={styles.body}>based on your interest and needs here</Typo>
           </Animated.View>
         </View>
         <StartSelector selected={selected} setSelected={setSelected} />

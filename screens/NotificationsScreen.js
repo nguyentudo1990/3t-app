@@ -18,7 +18,7 @@ function NotificationsScreen({ navigation }) {
 
   return (
     <ScreenComponent style={styles.container}>
-      <Header label={'Notifications'} />
+      <Header label={'Thông báo'} />
       <Animated.FlatList
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
           useNativeDriver: true,

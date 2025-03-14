@@ -37,21 +37,21 @@ function SigninScreen(props) {
       </View>
       <BlurView intensity={100} tint="light" style={styles.blurContainer}>
         <Typo size={26} style={styles.text}>
-          Hello Again!
+          Xin chào Huy!
         </Typo>
         <View style={{ marginVertical: '5%' }}>
           <Typo size={20} style={styles.body}>
-            Welcome back you've
+            Chào mừng bạn đến mua sắm!
           </Typo>
-          <Typo size={20} style={styles.body}>
+          {/* <Typo size={20} style={styles.body}>
             been missed!
-          </Typo>
+          </Typo> */}
         </View>
         <View style={styles.inputView}>
           <TextInput
             value={email}
             onChangeText={setEmail}
-            placeholder="Enter email"
+            placeholder="Số điện thoại"
             style={styles.input}
           />
         </View>
@@ -59,7 +59,7 @@ function SigninScreen(props) {
           <TextInput
             value={password}
             onChangeText={setPassword}
-            placeholder="Password"
+            placeholder="OTP"
             style={styles.input}
             secureTextEntry={isSecure}
           />
@@ -73,13 +73,13 @@ function SigninScreen(props) {
             </TouchableOpacity>
           )}
         </View>
-        <Typo style={styles.recoverTxt}>Recovery Possword</Typo>
+        {/* <Typo style={styles.recoverTxt}>Lấy lại mật khẩu</Typo> */}
         <AppButton
           onPress={() => Auth.setUser('123')}
-          label={'Sign in'}
+          label={'Đăng nhập'}
           style={{ backgroundColor: colors.primary, borderRadius: radius._12 }}
         />
-        <View style={styles.orContinueRow}>
+        {/* <View style={styles.orContinueRow}>
           <View style={styles.line} />
           <Typo>or continue with</Typo>
           <View style={styles.line} />
@@ -88,12 +88,12 @@ function SigninScreen(props) {
           <Icon icon={require('../assets/google.png')} />
           <Icon icon={require('../assets/apple.png')} />
           <Icon icon={require('../assets/facebook.png')} />
-        </View>
+        </View> */}
         <TouchableOpacity
           style={[styles.orContinueRow, { gap: spacingX._5, marginTop: '15%' }]}
           onPress={() => navigation.navigate('Register')}>
-          <Typo>Not a memeber?</Typo>
-          <Typo style={{ color: colors.blue }}>Register now</Typo>
+          <Typo>Chưa là thành viên?</Typo>
+          <Typo style={{ color: colors.blue }}>Đăng ký ngay</Typo>
         </TouchableOpacity>
       </BlurView>
     </SafeAreaView>
