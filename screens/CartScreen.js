@@ -5,7 +5,7 @@ import ScreenComponent from 'components/ScreenComponent';
 import Typo from 'components/Typo';
 import colors from 'config/colors';
 import { height, radius, spacingX, spacingY } from 'config/spacing';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FlatList,
   Text,
@@ -20,6 +20,22 @@ import { products } from 'utils/data';
 import { normalizeX, normalizeY } from 'utils/normalize';
 
 function CartScreen({ navigation }) {
+const [quantities, setQuantities] = useState(products.map(() => 1));
+
+  const increaseQuantity = (index) => {
+    const newQuantities = [...quantities];
+    newQuantities[index] += 1;
+    setQuantities(newQuantities);
+  };
+
+  const decreaseQuantity = (index) => {
+    const newQuantities = [...quantities];
+    if (newQuantities[index] > 1) {
+      newQuantities[index] -= 1;
+    }
+    setQuantities(newQuantities);
+  };
+
   return (
     <ScreenComponent style={styles.container}>
       <Header label={'Giỏ hàng'} />
@@ -35,7 +51,7 @@ function CartScreen({ navigation }) {
                 .duration(2000)
                 .damping(12)
                 .springify()}>
-              <CartCard item={item} />
+              <CartCard item={item} quantity={quantities[index]} onIncrease={() => increaseQuantity(index)} onDecrease={() => decreaseQuantity(index)} />
             </Animated.View>
           );
         }}

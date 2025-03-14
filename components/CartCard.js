@@ -7,7 +7,7 @@ import { normalizeX, normalizeY } from 'utils/normalize';
 import { spacingY } from 'config/spacing';
 const { width } = Dimensions.get('screen');
 
-function CartCard({ item }) {
+function CartCard({ item, quantity, onIncrease, onDecrease }) {
   const imgSize = width * 0.2;
   return (
     <View style={styles.container}>
@@ -32,9 +32,9 @@ function CartCard({ item }) {
         <View style={styles.row}>
           <Typo style={{ fontWeight: 'bold' }}>{item.price}</Typo>
           <View style={styles.countContanier}>
-            <Typo style={{ fontWeight: 'bold' }}>-</Typo>
-            <Typo style={{ fontWeight: 'bold' }}>1</Typo>
-            <Typo style={{ fontWeight: 'bold' }}>+</Typo>
+            <Typo style={{ fontWeight: 'bold' }} onPress={onDecrease}>-</Typo>
+            <Typo style={{ fontWeight: 'bold' }}>{quantity}</Typo>
+            <Typo style={{ fontWeight: 'bold' }} onPress={onIncrease}>+</Typo>
           </View>
         </View>
       </View>
