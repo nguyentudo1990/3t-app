@@ -41,7 +41,7 @@ function SigninScreen(props) {
         </Typo>
         <View style={{ marginVertical: '5%' }}>
           <Typo size={20} style={styles.body}>
-            Chào mừng bạn đến mua sắm!
+            Chào mừng bạn đến mua sắm.
           </Typo>
           {/* <Typo size={20} style={styles.body}>
             been missed!
